@@ -8,6 +8,7 @@ import {createStore} from 'redux'
 import restaurantReducer from './Reducers/restaurantReducer'
 import 'semantic-ui-css/semantic.min.css'
 
+
 const store = createStore(restaurantReducer)
 
 ReactDOM.render(
