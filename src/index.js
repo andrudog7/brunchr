@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from '.Containers/App';
+import App from './Containers/App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-import combineReducer from '../Reducers/combineReducer'
+import restaurantReducer from './Reducers/restaurantReducer'
 import 'semantic-ui-css/semantic.min.css'
 
-const store = createStore(combineReducer)
+const store = createStore(restaurantReducer)
 
 ReactDOM.render(
   <React.StrictMode>
