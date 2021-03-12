@@ -15,7 +15,7 @@ export default class NavBar extends React.Component {
 
     render () {
         return (
-            <Menu secondary vertical>
+            <Menu pointing secondary style={{marginTop:"-25px"}}>
                 <NavLink to="/">
                 <Menu.Item
                     style={{textAlign:"left"}}
@@ -42,6 +42,7 @@ export default class NavBar extends React.Component {
                     onClick={this.handleItemClick}
                 />
                 </NavLink>
+                
                 <Dropdown item text='Display Options'>
                     <Dropdown.Menu>
                         <Dropdown.Header>Text Size</Dropdown.Header>
@@ -50,7 +51,19 @@ export default class NavBar extends React.Component {
                         <Dropdown.Item>Large</Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown>
-            </Menu>
+            
+                    <Menu.Menu position="right">
+                    <NavLink to="/logout">    
+                    <Menu.Item
+                    style={{textAlign:"left"}}
+                    name='logout'
+                    active={this.state.activeItem === 'logout'}
+                    onClick={this.handleItemClick}
+                    />
+                    </NavLink>
+                  </Menu.Menu>  
+                
+                </Menu>
         )
     }
 }

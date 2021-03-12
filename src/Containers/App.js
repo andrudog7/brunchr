@@ -16,29 +16,16 @@ class App extends React.Component {
         <Router>
         <Header as='h2'>
           <Image circular src={logo} className="App-logo" alt="logo" />Brunchr
+          <NavBar></NavBar>
         </Header> 
-        <Grid >
-                    <Grid.Row>
-                        <Grid.Column width={2}>
-                            <NavBar></NavBar>
-                        </Grid.Column>
-                        <Grid.Column width={13}>
-                            <Container>
-                            
-                                <Switch>
-                                  <Route exact path ="/" component={Home}></Route>
-                                  <Route exact path="/login" component={() => <LoginContainer/>}></Route>
-                                  <Route exact path="/signup" component={() => <SignUpContainer/>}/>   
-                                </Switch>
-                            
-                            </Container>
-                        </Grid.Column> 
-                    </Grid.Row>
-                </Grid>
-          
+        <Container>
+          <Switch>
+            <Route exact path ="/" component={Home}></Route>
+            <Route exact path="/login" component={() => <LoginContainer/>}></Route>
+            <Route exact path="/signup" component={() => <SignUpContainer/>}/>   
+          </Switch>
+        </Container>
         </Router>
-
-        
       </div>
     );
   }
