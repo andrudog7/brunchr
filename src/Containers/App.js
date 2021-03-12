@@ -1,7 +1,7 @@
 import '../App.css';
 import React, {Component} from 'react'
 import {Switch, Route} from "react-router-dom"
-import SignUpContainer from '../Components/SignUpContainer'
+import SignUpForm from '../Components/SignUpForm'
 import LoginContainer from "../Components/LoginContainer"
 import ProfileContainer from './ProfileContainer'
 import Home from './Home'
@@ -24,7 +24,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path ="/" component={Home}></Route>
             <Route exact path="/login" component={() => <LoginContainer/>}></Route>
-            <Route exact path="/signup" component={() => <SignUpContainer/>}/>
+            <Route exact path="/signup" component={() => <SignUpForm/>}/>
             <Route exact path="/profile" component={() => <ProfileContainer/>}></Route>   
           </Switch>
         </Container>

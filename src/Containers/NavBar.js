@@ -6,7 +6,12 @@ import {connect} from 'react-redux'
 class NavBar extends React.Component {
 
     handleItemClick = (e, { name }) => {
+        if (name === "logout") {
+            this.props.logoutUser()
+            this.props.handleNavBar("home")
+        } else {
         this.props.handleNavBar(name)
+        }
     }
 
     render () {
@@ -40,7 +45,7 @@ class NavBar extends React.Component {
                     </Dropdown>
             
                     <Menu.Menu position="right">
-                    <NavLink to="/logout">    
+                    <NavLink to="/">    
                     <Menu.Item
                     style={{textAlign:"left"}}
                     name='logout'
@@ -92,7 +97,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    handleNavBar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
+    handleNavBar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload}),
+    logoutUser: (payload) => dispatch({type: 'LOGOUT', payload})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

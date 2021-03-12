@@ -3,8 +3,9 @@ import { Button, Header, Form } from 'semantic-ui-react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import NavBar from '../Containers/NavBar'
+import {fetchNewUser} from '../Actions/UserActions'
 
-class SignUpContainer extends React.Component {
+class SignUpForm extends React.Component {
     state = {
         username: "",
         email: "",
@@ -22,35 +23,7 @@ class SignUpContainer extends React.Component {
 
     handleSignUpSubmit = (event) => {
         event.preventDefault()
-
-        let userObj = {
-            user: {
-                username: this.state.username,
-                email: this.state.email,
-                password: this.state.password,
-                city: this.state.city,
-                image: this.state.avatar
-            }
-        }
-        
-        fetch('http://127.0.0.1:3000/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(userObj)
-        })
-        .then(r => r.json())
-        .then(data => {
-            localStorage.setItem("jwt", data.jwt)
-            this.props.addCurrentUser(data.user)
-            this.props.updateNavbar("profile")
-            this.setState({
-            redirect: true
-        })
-        })
-        
+        this.props.fetchNewUser()
     }
 
     render() {
@@ -90,8 +63,8 @@ class SignUpContainer extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-        addCurrentUser: (payload) => dispatch({type: "ADD_CURRENT_USER", payload}),
-        updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
+    fetchNewUser: () => dispatch(fetchNewUser()),   
+    updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
     })
 
-export default connect(null, mapDispatchToProps)(SignUpContainer);
+export default connect(null, mapDispatchToProps)(SignUpForm);
