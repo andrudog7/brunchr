@@ -1,44 +1,31 @@
 import React from 'react' 
 import {Dropdown, Menu} from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
+import {connect} from 'react-redux'
 
-export default class NavBar extends React.Component {
-    state={
-        activeItem: "home"
-    }
+class NavBar extends React.Component {
 
     handleItemClick = (e, { name }) => {
-        
-        this.setState({ activeItem: name })
-
+        this.props.handleNavBar(name)
     }
 
     render () {
-        return (
-            <Menu pointing secondary style={{marginTop:"-25px"}}>
+        if (this.props.navBar === "profile") {
+            return (<Menu pointing secondary style={{marginTop:"-25px"}}>
                 <NavLink to="/">
                 <Menu.Item
                     style={{textAlign:"left"}}
                     name='home'
-                    active={this.state.activeItem === 'home'}
+                    active={this.props.navBar  === 'home'}
                     onClick={this.handleItemClick}
                 />
                 </NavLink>
-                <NavLink to="/login">
+                
+                <NavLink to="/profile">
                 <Menu.Item
                     style={{textAlign:"left"}}
-                    name='login'
-                    active={this.state.activeItem === 'login'}
-                    onClick={this.handleItemClick}
-                />
-                </NavLink>
-                <NavLink to="/signup">
-                <Menu.Item
-                    
-                    style={{textAlign:"left"}}
-                    name='signup'
-                    content="Sign-Up"
-                    active={this.state.activeItem === 'signup'}
+                    name='profile'
+                    active={this.props.navBar  === 'profile'}
                     onClick={this.handleItemClick}
                 />
                 </NavLink>
@@ -57,13 +44,55 @@ export default class NavBar extends React.Component {
                     <Menu.Item
                     style={{textAlign:"left"}}
                     name='logout'
-                    active={this.state.activeItem === 'logout'}
+                    active={this.props.navBar  === 'logout'}
                     onClick={this.handleItemClick}
                     />
                     </NavLink>
                   </Menu.Menu>  
                 
                 </Menu>
+                
+            )} else {
+                return (<Menu pointing secondary style={{marginTop:"-25px"}}>
+                <NavLink to="/">
+                <Menu.Item
+                    style={{textAlign:"left"}}
+                    name='home'
+                    active={this.props.navBar  === 'home'}
+                    onClick={this.handleItemClick}
+                />
+                </NavLink>
+                
+                <NavLink to="/login">
+                <Menu.Item
+                    style={{textAlign:"left"}}
+                    name='login'
+                    active={this.props.navBar  === 'login'}
+                    onClick={this.handleItemClick}
+                />
+                </NavLink>
+                <NavLink to="/signup">
+                <Menu.Item
+                    style={{textAlign:"left"}}
+                    name='signup'
+                    content="Sign-Up"
+                    active={this.props.navBar === 'signup'}
+                    onClick={this.handleItemClick}
+                />
+                </NavLink> 
+                
+                </Menu>
         )
     }
-}
+    }}
+
+const mapStateToProps = (state) => ({
+    navBar: state.navBar.active,
+    currentUser: state.currentUser
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    handleNavBar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

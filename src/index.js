@@ -5,11 +5,11 @@ import App from './Containers/App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-import restaurantReducer from './Reducers/restaurantReducer'
+import rootReducer from './Reducers/combineReducers'
 import 'semantic-ui-css/semantic.min.css'
 
 
-const store = createStore(restaurantReducer)
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
   <React.StrictMode>

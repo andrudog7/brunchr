@@ -1,13 +1,17 @@
 import React from 'react' 
 import { Button, Header, Form } from 'semantic-ui-react'
+import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import NavBar from '../Containers/NavBar'
 
-export default class SignUpContainer extends React.Component {
+class SignUpContainer extends React.Component {
     state = {
         username: "",
         email: "",
         password: "",
         city: "",
-        avatar: ""
+        avatar: "",
+        redirect: false
     }
 
     handleChange = (event) => {
@@ -25,7 +29,7 @@ export default class SignUpContainer extends React.Component {
                 email: this.state.email,
                 password: this.state.password,
                 city: this.state.city,
-                avatar: this.state.avatar
+                image: this.state.avatar
             }
         }
         
@@ -39,13 +43,23 @@ export default class SignUpContainer extends React.Component {
         })
         .then(r => r.json())
         .then(data => {
-            console.log(data)
-    })
+            localStorage.setItem("jwt", data.jwt)
+            this.props.addCurrentUser(data.user)
+            this.props.updateNavbar("profile")
+            this.setState({
+            redirect: true
+        })
+        })
+        
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/profile"></Redirect>
+        } else {
         return(
             <div>
+                <NavBar></NavBar>
                 <Header size="huge">SignUp Below</Header>
                 <Form style={{textAlign:"center"}} onSubmit={this.handleSignUpSubmit}>
                 <Form.Field inline>
@@ -66,11 +80,18 @@ export default class SignUpContainer extends React.Component {
                 </Form.Field>
                 <Form.Field inline>
                     <label style={{width:"100px"}}>Profile Picture</label>
-                    <input style={{width:"250px"}} type="file" placeholder='Avatar' name="avatar" onChange={this.handleChange} value={this.state.avatar} />
+                    <input style={{width:"250px"}} type="text" placeholder='Image URL' name="avatar" onChange={this.handleChange} value={this.state.avatar} />
                 </Form.Field>
                 <Button type='submit'>Submit</Button>
                 </Form>
             </div>
         )
-    }
+    }}   
 }
+
+const mapDispatchToProps = (dispatch) => ({
+        addCurrentUser: (payload) => dispatch({type: "ADD_CURRENT_USER", payload}),
+        updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
+    })
+
+export default connect(null, mapDispatchToProps)(SignUpContainer);
