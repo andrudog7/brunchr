@@ -7,16 +7,15 @@ import ProfileContainer from './ProfileContainer'
 import Home from './Home'
 import {BrowserRouter as Router} from 'react-router-dom'
 import {Header, Image, Container} from 'semantic-ui-react'
-import logo from '../logo.svg'
-
+import brunchr from '../Images/brunchrlogo.jpeg'
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
         <Router>
-        <Header as='h2'>
-          <Image circular src={logo} className="App-logo" alt="logo" />Brunchr
+        <Header as='h2' style={{marginTop:"10px"}} >
+          <Image circular src={brunchr} className="App-logo" alt="logo" />Brunchr
           
         </Header> 
         <Container>
