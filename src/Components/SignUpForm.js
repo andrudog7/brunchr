@@ -23,7 +23,13 @@ class SignUpForm extends React.Component {
 
     handleSignUpSubmit = (event) => {
         event.preventDefault()
-        this.props.fetchNewUser()
+        this.props.fetchNewUser(this.state)  
+        setTimeout(() => {
+            this.props.updateNavbar("profile")
+            this.setState({
+                redirect: true
+            })}, 600)
+        
     }
 
     render() {
@@ -62,9 +68,11 @@ class SignUpForm extends React.Component {
     }}   
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchNewUser: () => dispatch(fetchNewUser()),   
-    updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
-    })
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchNewUser: (state) => dispatch(fetchNewUser(state)),   
+        updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
+    }   
+}
 
 export default connect(null, mapDispatchToProps)(SignUpForm);

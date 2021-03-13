@@ -2,12 +2,11 @@ import '../App.css';
 import React, {Component} from 'react'
 import {Switch, Route} from "react-router-dom"
 import SignUpForm from '../Components/SignUpForm'
-import LoginContainer from "../Components/LoginContainer"
+import LoginForm from "../Components/LoginForm"
 import ProfileContainer from './ProfileContainer'
 import Home from './Home'
 import {BrowserRouter as Router} from 'react-router-dom'
-import NavBar from './NavBar'
-import {Header, Image, Container, Grid} from 'semantic-ui-react'
+import {Header, Image, Container} from 'semantic-ui-react'
 import logo from '../logo.svg'
 
 
@@ -23,7 +22,7 @@ class App extends React.Component {
         <Container>
           <Switch>
             <Route exact path ="/" component={Home}></Route>
-            <Route exact path="/login" component={() => <LoginContainer/>}></Route>
+            <Route exact path="/login" component={() => <LoginForm/>}></Route>
             <Route exact path="/signup" component={() => <SignUpForm/>}/>
             <Route exact path="/profile" component={() => <ProfileContainer/>}></Route>   
           </Switch>
