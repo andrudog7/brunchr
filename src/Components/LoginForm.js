@@ -19,15 +19,16 @@ class LoginForm extends React.Component {
         })
     }
 
-    handleLoginSubmit = (event) => {
-        event.preventDefault()
-        this.props.fetchUser(this.state)
-        setTimeout(() => {
+    redirectToProfile = () => {
         this.props.updateNavbar("profile")
         this.setState({
             redirect: true
-        })}, 600)
-        
+        })
+    }
+
+    handleLoginSubmit = (event) => {
+        event.preventDefault()
+        this.props.fetchUser(this.state, this.redirectToProfile)
     }
 
     render() {
@@ -55,7 +56,7 @@ class LoginForm extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchUser: (state) => dispatch(fetchUser(state)),
+    fetchUser: (state, prop) => dispatch(fetchUser(state, prop)),
     updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
 })
 

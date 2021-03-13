@@ -1,7 +1,7 @@
 const signUpUser = (user) => ({type: "SIGN_UP_USER", payload: user})
 const loginUser = (user) => ({type: "LOGIN_USER", payload: user})
 
-export const fetchNewUser = (state) => {
+export const fetchNewUser = (state, redirectToProfile) => {
     return (dispatch) => {
     let newUserObj = {
         user: {
@@ -25,11 +25,12 @@ export const fetchNewUser = (state) => {
         .then(data => {
             localStorage.setItem("jwt", data.jwt)
             dispatch(signUpUser(data.user))
+            redirectToProfile()
         })
 }
 }
 
-export const fetchUser = (state) => {
+export const fetchUser = (state, redirectToProfile) => {
     return (dispatch) => {
     let userObj = {
         user: {
@@ -37,7 +38,6 @@ export const fetchUser = (state) => {
             password: state.password
         }
     }
-
     fetch('http://127.0.0.1:3000/login', {
             method: 'POST',
             headers: {
@@ -50,6 +50,7 @@ export const fetchUser = (state) => {
         .then(data => {
             localStorage.setItem("jwt", data.jwt)
             dispatch(loginUser(data.user))
+            redirectToProfile()
         })
 }
 }
