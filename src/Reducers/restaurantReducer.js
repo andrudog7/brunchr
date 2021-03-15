@@ -1,7 +1,7 @@
 export default function restaurantReducer(state = [], action){
     switch(action.type){
-        case "QUARTER":
-            return {...state, total: state.total + 25};
+        case "FETCH_RESTAURANTS":
+            return {state: action.payload};
         case "DIME":
             return {...state, total: state.total + 10};
         case "NICKEL":

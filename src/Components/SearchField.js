@@ -1,7 +1,9 @@
 import React from 'react' 
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {fetchRestaurants} from '../Actions/RestaurantActions'
 
-export default class SearchField extends React.Component {
+class SearchField extends React.Component {
     state = {
         query: "",
         bottomless: false,
@@ -34,11 +36,15 @@ export default class SearchField extends React.Component {
         }))
     }
 }
+    handleSearchSubmit = (event) => {
+        event.preventDefault()
+        this.props.fetchRestaurants(this.state.query)
+    }
     
     render() {
         return (
             <div>
-                <Form style={{textAlign:"center"}}>
+                <Form style={{textAlign:"center"}} onSubmit={this.handleSearchSubmit}>
                 <Form.Field inline>
                     <label style={{width:"30px"}}>City:</label>
                     <input style={{width:"250px"}} type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
@@ -48,9 +54,18 @@ export default class SearchField extends React.Component {
                     <Form.Checkbox label="Drink Specials" name="drink_specials"value={this.state.drinkSpecials} onChange={this.handleCheckbox}></Form.Checkbox>
                     <Form.Checkbox label="Takes Reservations" name="reservations"value={this.state.reservations} onChange={this.handleCheckbox}></Form.Checkbox>
                     <Form.Checkbox label="Outdoor Seating" name="outdoor_seating"value={this.state.outdoorSeating} onChange={this.handleCheckbox}></Form.Checkbox>
+                    <Button type='submit'>Submit</Button>
                 </Form.Group> 
                 </Form>
             </div>
         )
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchRestaurants: (location) => dispatch(fetchRestaurants(location))
+    }   
+}
+
+export default connect(null, mapDispatchToProps)(SearchField);

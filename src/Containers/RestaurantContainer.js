@@ -1,12 +1,19 @@
 import React from 'react' 
-import SearchField from '../Components/SearchField'
+import {fetchRestaurants} from '../Actions/RestaurantActions'
+import {connect} from 'react-redux'
 
-export default class RestaurantContainer extends React.Component {
+class RestaurantContainer extends React.Component {
     render() {
         return(
             <div>
-                <SearchField></SearchField>
+                {fetchRestaurants()}
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    restaurants: state.restaurants.state
+})
+
+export default connect(mapStateToProps)(RestaurantContainer);
