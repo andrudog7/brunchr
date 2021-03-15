@@ -15,22 +15,23 @@ class NavBar extends React.Component {
     }
 
     render () {
-        if (this.props.navBar === "profile") {
+        if (this.props.navBar === "profile" || this.props.navBar === "restaurants") {
             return (<Menu pointing secondary style={{marginTop:"-25px"}}>
-                <NavLink to="/">
-                <Menu.Item
-                    style={{textAlign:"left"}}
-                    name='home'
-                    active={this.props.navBar  === 'home'}
-                    onClick={this.handleItemClick}
-                />
-                </NavLink>
                 
                 <NavLink to="/profile">
                 <Menu.Item
                     style={{textAlign:"left"}}
                     name='profile'
                     active={this.props.navBar  === 'profile'}
+                    onClick={this.handleItemClick}
+                />
+                </NavLink>
+
+                <NavLink to="/restaurants">
+                <Menu.Item
+                    style={{textAlign:"left"}}
+                    name='restaurants'
+                    active={this.props.navBar  === 'restaurants'}
                     onClick={this.handleItemClick}
                 />
                 </NavLink>

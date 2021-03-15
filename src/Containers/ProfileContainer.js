@@ -2,6 +2,8 @@ import React from 'react'
 import {Header, Image} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import NavBar from './NavBar'
+import SearchField from '../Components/SearchField'
+import RestaurantContainer from './RestaurantContainer'
 
 
 class ProfileContainer extends React.Component {

@@ -7,8 +7,6 @@ export default class Home extends React.Component {
     render() {
         return(
             <div>
-                <NavBar></NavBar>
-                <SearchField></SearchField>
                 <RestaurantContainer></RestaurantContainer>
             </div>
         )

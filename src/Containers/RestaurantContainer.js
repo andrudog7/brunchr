@@ -1,18 +1,26 @@
 import React from 'react' 
 import {connect} from 'react-redux'
 import {Card, Image, Placeholder } from 'semantic-ui-react'
+import SearchField from '../Components/SearchField'
+import NavBar from './NavBar'
 
 class RestaurantContainer extends React.Component {
 
     render() {
+        <div></div>
         if (this.props.loading === true) {
             return (
-                <div>Loading Restaurants...</div>
+                    <div>Loading Restaurants...
+                    </div>
+                
             )
         } else {
         return(
-            <div>Restaurants Have Loaded
-                <Card.Group doubling itemsPerRow={5} stackable>
+            <div>
+                <NavBar></NavBar>
+                <SearchField></SearchField>
+            <div>
+                <Card.Group doubling itemsPerRow={4} stackable>
           {this.props.restaurants.map(res => (
             <Card key={res.id}>
               {this.props.loading ? (
@@ -45,7 +53,7 @@ class RestaurantContainer extends React.Component {
               </Card>
               ))}
               </Card.Group>
-            </div>
+            </div></div>
         )
         }
     }
