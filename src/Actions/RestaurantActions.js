@@ -1,14 +1,21 @@
 const addRestaurants = (restaurants) => ({type: "FETCH_RESTAURANTS", payload: restaurants})
+const fetchingtheRestaurants = () => ({type: "FETCHING_RESTAURANTS"})
 
-export const fetchRestaurants = () => {
+
+export const fetchingRestaurants = () => {
     return (dispatch) => {
+    dispatch(fetchingtheRestaurants())
+    }
+}
+
+export const fetchRestaurants = (location) => (dispatch) => {
     let newRestaurantObj = {
         restaurant: {
-            location: "New York"
+            location: location
         }
     }
-
-    fetch('http://127.0.0.1:3000/restaurants', {
+    
+    return fetch('http://127.0.0.1:3000/restaurants', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -20,5 +27,4 @@ export const fetchRestaurants = () => {
     .then(data => {
         dispatch(addRestaurants(data))
     })
-}
 }

@@ -1,9 +1,9 @@
-export default function restaurantReducer(state = [], action){
+export default function restaurantReducer(state = {restaurants: [], loading: false}, action){
     switch(action.type){
         case "FETCH_RESTAURANTS":
-            return {state: action.payload};
-        case "DIME":
-            return {...state, total: state.total + 10};
+            return {restaurants: action.payload, loading: false};
+        case "FETCHING_RESTAURANTS":
+            return {...state, loading: true};
         case "NICKEL":
             return {...state, total: state.total + 5};
         case "PENNY":

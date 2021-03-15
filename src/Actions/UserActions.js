@@ -1,6 +1,7 @@
 const signUpUser = (user) => ({type: "SIGN_UP_USER", payload: user})
 const loginUser = (user) => ({type: "LOGIN_USER", payload: user})
 
+
 export const fetchNewUser = (state, redirectToProfile) => {
     return (dispatch) => {
     let newUserObj = {

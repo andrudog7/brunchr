@@ -1,7 +1,7 @@
 import React from 'react' 
 import { Button, Form } from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import {fetchRestaurants} from '../Actions/RestaurantActions'
+import {fetchRestaurants, fetchingRestaurants} from '../Actions/RestaurantActions'
 
 class SearchField extends React.Component {
     state = {
@@ -38,6 +38,7 @@ class SearchField extends React.Component {
 }
     handleSearchSubmit = (event) => {
         event.preventDefault()
+        this.props.fetchingRestaurants()
         this.props.fetchRestaurants(this.state.query)
     }
     
@@ -64,6 +65,7 @@ class SearchField extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        fetchingRestaurants: () => dispatch(fetchingRestaurants()),
         fetchRestaurants: (location) => dispatch(fetchRestaurants(location))
     }   
 }
