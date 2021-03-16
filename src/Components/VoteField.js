@@ -31,21 +31,27 @@ class VoteField extends React.Component {
         
     handleIconClick = (event) => {
         if (event.target.className.includes("check") && event.target.className.includes("outline") && event.nativeEvent.path[1].innerText.includes("Bottomless")) {
+            if (this.state.bottomlessDownvoteColor === "red") {
+                this.props.subtractBottomlessDownvote(this.props.restaurant.id)
+            }
             this.setState({
                 bottomlessUpvoteName: "check circle",
                 bottomlessUpvoteColor: "blue",
                 bottomlessDownvoteName: "times circle outline",
                 bottomlessDownvoteColor: "black"
             })
-            this.props.addBottomless(this.props.restaurant.id)
+            this.props.addBottomlessUpvote(this.props.restaurant.id)
         } else if (event.target.className.includes("times") && event.target.className.includes("outline") && event.nativeEvent.path[1].innerText.includes("Bottomless")) {
+            if (this.state.bottomlessUpvoteColor === "blue") {
+                this.props.subtractBottomlessUpvote(this.props.restaurant.id)
+            }
             this.setState({
                 bottomlessUpvoteName: "check circle outline",
                 bottomlessUpvoteColor: "black",
                 bottomlessDownvoteName: "times circle",
                 bottomlessDownvoteColor: "red"
             })
-            this.props.subtractBottomless(this.props.restaurant.id)
+            this.props.addBottomlessDownvote(this.props.restaurant.id)
         } 
         
     }
@@ -71,8 +77,10 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    addBottomless: (restaurant) => dispatch({type: "ADD_BOTTOMLESS", restaurant}),
-    subtractBottomless: (restaurant) => dispatch({type: "SUBTRACT_BOTTOMLESS", restaurant}),
+    addBottomlessUpvote: (restaurant) => dispatch({type: "ADD_BOTTOMLESS_UPVOTE", restaurant}),
+    subtractBottomlessUpvote: (restaurant) => dispatch({type: "SUBTRACT_BOTTOMLESS_UPVOTE", restaurant}),
+    addBottomlessDownvote: (restaurant) => dispatch({type: "ADD_BOTTOMLESS_DOWNVOTE", restaurant}),
+    subtractBottomlessDownvote: (restaurant) => dispatch({type: "SUBTRACT_BOTTOMLESS_DOWNVOTE", restaurant})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(VoteField);
