@@ -47,8 +47,7 @@ class SearchField extends React.Component {
             <div>
                 <Form style={{textAlign:"center"}} onSubmit={this.handleSearchSubmit}>
                 <Form.Field inline>
-                    <label style={{width:"30px"}}>City:</label>
-                    <input style={{width:"250px"}} type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
+                    <input style={{width:"250px"}} type="text" name="query" value={this.state.query} onChange={this.handleChange} placeholder="Search by city/neighborhood"></input>
                 </Form.Field>  
                 <Form.Group inline style={{justifyContent:"center"}}>
                     <Form.Checkbox label="Bottomless" name="bottomless" value={this.state.bottomless} onChange={this.handleCheckbox}></Form.Checkbox>
