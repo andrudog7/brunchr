@@ -2,12 +2,18 @@ import React from 'react'
 import {Header, Image} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import NavBar from './NavBar'
-import RestaurantContainer from './RestaurantContainer'
+import RestaurantShowCard from '../Components/RestaurantShowCard'
+import {Card} from 'semantic-ui-react'
 
 
 class ProfileContainer extends React.Component {
     
     render() {
+        const renderProfileCards= () => {
+            return this.props.currentUser.my_restaurants.map(res => (
+                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
+                ))}
+
         return(
             <div>
                 <NavBar></NavBar>
@@ -15,6 +21,9 @@ class ProfileContainer extends React.Component {
                     <Image src={this.props.currentUser.my_image} size='huge'/>
                     Welcome {this.props.currentUser.username}
                 </Header>
+                <Card.Group doubling itemsPerRow={4} stackable>
+                    {renderProfileCards()}
+                </Card.Group>
             </div>
         )
     }
