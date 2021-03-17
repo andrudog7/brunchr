@@ -9,7 +9,7 @@ export default class RestaurantCardFront extends React.Component {
             <Card.Content>
                 <>
                 <Card.Header>{this.props.restaurant.name}</Card.Header>
-                <Card.Meta>Yelp Rating: {this.props.restaurant.rating}</Card.Meta>
+                <Card.Description>Yelp Rating: {this.props.restaurant.rating}</Card.Description>
                 <Card.Description>Price: {this.props.restaurant.price}</Card.Description>
                 </>
             </Card.Content>

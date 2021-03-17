@@ -33,7 +33,7 @@ class RestaurantCardBack extends React.Component {
                 return <Button size="small" onClick={this.removeFromProfile}>Remove</Button> 
             } else if (this.props.currentUser && this.props.currentUser.my_restaurants.find(res => res.id === this.props.restaurant.id)) {
                 return null
-            } else {
+            } else if (this.props.currentUser) {
                  return <Button size="small" onClick={this.addToProfile}>+</Button>   
                 }
         }
@@ -50,7 +50,7 @@ class RestaurantCardBack extends React.Component {
                 <Card.Description>{this.props.restaurant.address1}</Card.Description>
                 <Card.Description>{this.props.restaurant.city}, {this.props.restaurant.state} {this.props.restaurant.zip_code}</Card.Description>
                 <br></br>
-                <VoteField userRestaurant={this.props.currentUser ? this.props.currentUser.users_restaurants.find(res => res.restaurant_id === this.props.restaurant.id) : this.props.restaurant.users_restaurants.find(res => res.user_id === this.props.currentUser.id)} restaurant={this.props.restaurant}></VoteField>
+                <VoteField userRestaurant={this.props.currentUser ? this.props.currentUser.users_restaurants.find(res => res.restaurant_id === this.props.restaurant.id) : null} restaurant={this.props.restaurant}></VoteField>
                 <br></br>
                 {profileButton()}<Button size="small">Info</Button><Button size="small" onClick={this.props.flipCard}>Done</Button>
                 </>
