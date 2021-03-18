@@ -15,9 +15,10 @@ export default function statsReducer(state = [], action){
                     state: newArray //reassingning todos to new array
                 }
             } else {
+                newArray = [...state.state]
+                newArray.push(action.data)
                 return {...state, 
-                    state: {...state,
-                    ...state.concat(action.data)}
+                    state: newArray
                 }
             }
         default:
