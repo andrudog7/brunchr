@@ -1,5 +1,5 @@
 import React from 'react' 
-import {Dropdown, Menu} from 'semantic-ui-react'
+import {Dropdown, Menu, Header, Image} from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 
@@ -16,7 +16,8 @@ class NavBar extends React.Component {
 
     render () {
         if (this.props.navBar === "profile" || this.props.navBar === "restaurants") {
-            return (<Menu pointing secondary style={{marginTop:"-25px"}}>
+            return (
+                <Menu pointing secondary style={{marginTop:"-25px"}}>
                 
                 <NavLink to="/profile">
                 <Menu.Item

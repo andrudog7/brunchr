@@ -27,6 +27,16 @@ class RestaurantCardBack extends React.Component {
             })
     }
 
+    handleDoneSubmit = (event) => {
+        event.preventDefault()
+        if (document.getElementById(`bottomlessup-${this.props.restaurant.id}`).className.includes("blue")) {
+            console.log("bottomless-yes")
+        } else if (document.getElementById(`bottomlessdown-${this.props.restaurant.id}`).className.includes("red")) {
+            console.log("bottomless-no")
+        }
+        this.props.flipCard()
+    }
+
     render() {
         const profileButton = () => {
             if (this.props.currentUser && window.location.pathname === "/profile" && this.props.currentUser.my_restaurants.find(res => res.id === this.props.restaurant.id)) {
@@ -34,7 +44,7 @@ class RestaurantCardBack extends React.Component {
             } else if (this.props.currentUser && this.props.currentUser.my_restaurants.find(res => res.id === this.props.restaurant.id)) {
                 return null
             } else if (this.props.currentUser) {
-                 return <Button size="small" onClick={this.addToProfile}>+</Button>   
+                 return <Button size="small" onClick={this.addToProfile}>Favorite</Button>   
                 }
         }
         if (this.state.redirect) {
@@ -52,7 +62,7 @@ class RestaurantCardBack extends React.Component {
                 <br></br>
                 <VoteField userRestaurant={this.props.currentUser ? this.props.currentUser.users_restaurants.find(res => res.restaurant_id === this.props.restaurant.id) : null} restaurant={this.props.restaurant}></VoteField>
                 <br></br>
-                {profileButton()}<Button size="small">Info</Button><Button size="small" onClick={this.props.flipCard}>Done</Button>
+                {profileButton()}<Button size="small">Info</Button><Button size="small" onClick={this.handleDoneSubmit}>Done</Button>
                 </>
             </Card.Content>
         </Card>

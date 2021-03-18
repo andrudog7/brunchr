@@ -25,11 +25,15 @@ export const fetchNewUser = (state, redirectToProfile) => {
             },
             body: JSON.stringify(newUserObj)
         })
+        .then(handleErrors)
         .then(r => r.json())
         .then(data => {
             localStorage.setItem("jwt", data.jwt)
             dispatch(signUpUser(data.user))
             redirectToProfile()
+        })
+        .catch(error => {
+            alert("The username or email you used is not available.  Try again.")
         })
 }
 }
@@ -50,11 +54,15 @@ export const fetchUser = (state, redirectToProfile) => {
             },
             body: JSON.stringify(userObj)
         })
+        .then(handleErrors)
         .then(r => r.json())
         .then(data => {
             localStorage.setItem("jwt", data.jwt)
             dispatch(loginUser(data.user))
             redirectToProfile()
+        })
+        .catch(error => {
+            alert("Username or password was incorrect")
         })
 }
 }
@@ -79,7 +87,7 @@ export const addRestaurantToProfile = (restaurant, user, redirect) => {
         .then(r => r.json())
         .then(data => {
             dispatch(addRestaurant(data))
-            redirect()
+            // redirect()
         })
 }
 }
@@ -106,5 +114,12 @@ export const removeFromProfile = (user_restaurant, flip) => {
             flip()
         })
 }
+}
+
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
 }
 

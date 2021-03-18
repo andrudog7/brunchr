@@ -58,11 +58,11 @@ class VoteField extends React.Component {
     render() {
         const checkUserInput = () => {
             if (this.props.userRestaurant) {
-                return <Card.Description>{this.props.restaurant.bottomless_upvote} <Icon inverted color={this.state.bottomlessUpvoteColor} name={this.state.bottomlessUpvoteName} onClick={this.handleIconClick}/> Bottomless <Icon inverted color={this.state.bottomlessDownvoteColor} name={this.state.bottomlessDownvoteName} onClick={this.handleIconClick}/>{this.props.restaurant.bottomless_downvote}</Card.Description>
+                return <Card.Description >{this.props.restaurant.bottomless_upvote} <Icon id={`bottomlessup-${this.props.restaurant.id}`} inverted color={this.state.bottomlessUpvoteColor} name={this.state.bottomlessUpvoteName} onClick={this.handleIconClick}/> Bottomless <Icon id={`bottomlessdown-${this.props.restaurant.id}`} inverted color={this.state.bottomlessDownvoteColor} name={this.state.bottomlessDownvoteName} onClick={this.handleIconClick}/>{this.props.restaurant.bottomless_downvote}</Card.Description>
             } else if (this.props.currentUser) {
                 return <Card.Description>{this.props.restaurant.bottomless_upvote} <Icon inverted color={this.state.bottomlessUpvoteColor} name={this.state.bottomlessUpvoteName} onClick={this.handleIconClick} /> BottomlessTest <Icon inverted color={this.state.bottomlessDownvoteColor} name={this.state.bottomlessDownvoteName} onClick={this.handleIconClick}/>{this.props.restaurant.bottomless_downvote}</Card.Description>
             } else {
-                return <Card.Description>{this.props.restaurant.bottomless_upvote} <Icon inverted color="black" name="check circle outline"/> BottomlessNoUser <Icon inverted color="black" name="times circle outline"/>{this.props.restaurant.bottomless_downvote}</Card.Description>
+                return <Card.Description >{this.props.restaurant.bottomless_upvote} <Icon inverted color="black" name="check circle outline"/> BottomlessNoUser <Icon inverted color="black" name="times circle outline"/>{this.props.restaurant.bottomless_downvote}</Card.Description>
             }
         }
 

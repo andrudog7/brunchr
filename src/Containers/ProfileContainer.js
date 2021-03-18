@@ -16,11 +16,14 @@ class ProfileContainer extends React.Component {
 
         return(
             <div>
-                <NavBar></NavBar>
-                <Header>
-                    <Image src={this.props.currentUser.my_image} size='huge'/>
-                    Welcome {this.props.currentUser.username}
+                
+                <Header style={{textAlign:"left"}}>
+                    <Image circular src={this.props.currentUser.my_image} size='huge'/>
+                    {this.props.currentUser.username}
                 </Header>
+                <br></br>
+                <NavBar></NavBar>
+                <br></br>
                 <Card.Group doubling itemsPerRow={4} stackable>
                     {renderProfileCards()}
                 </Card.Group>
