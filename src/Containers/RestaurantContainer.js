@@ -1,6 +1,6 @@
 import React from 'react' 
 import {connect} from 'react-redux'
-import {Card} from 'semantic-ui-react'
+import {Card, Header, Image} from 'semantic-ui-react'
 import SearchField from '../Components/SearchField'
 import RestaurantShowCard from '../Components/RestaurantShowCard'
 import NavBar from './NavBar'
@@ -12,15 +12,28 @@ class RestaurantContainer extends React.Component {
             return this.props.restaurants.map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
                 ))}
+
+        const userHeader = () => {
+            if (this.props.currentUser) {
+                return (
+                    <Header style={{textAlign:"left"}}>
+                    <Image circular src={this.props.currentUser.my_image} size='huge'/>
+                    {this.props.currentUser.username}
+                </Header>
+                )
+            }
+        }
         
-                if (this.props.loading === true) {
+        if (this.props.loading === true) {
             return (
-                    <div>Loading Restaurants...
-                    </div>
+                <div>Loading Restaurants...
+                </div>
             )
         } else {
         return(
             <div>
+                {userHeader()}
+                <br></br>
                 <NavBar></NavBar>
                 <SearchField></SearchField>
                 <div>

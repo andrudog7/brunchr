@@ -2,7 +2,7 @@ import React from 'react'
 import {Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {Card, Button, Icon} from 'semantic-ui-react'
-import { addRestaurantToProfile, removeFromProfile } from '../Actions/UserActions'
+import { addRestaurantToProfile, removeFromProfile, updateStats } from '../Actions/UserActions'
 import VoteField from './VoteField'
 
 
@@ -29,10 +29,14 @@ class RestaurantCardBack extends React.Component {
 
     handleDoneSubmit = (event) => {
         event.preventDefault()
+        let bottomless = ""
         if (document.getElementById(`bottomlessup-${this.props.restaurant.id}`).className.includes("blue")) {
-            console.log("bottomless-yes")
+            bottomless = "true"
         } else if (document.getElementById(`bottomlessdown-${this.props.restaurant.id}`).className.includes("red")) {
-            console.log("bottomless-no")
+            bottomless = "false"
+        }
+        if (bottomless != "") {
+            this.props.updateStats(bottomless, this.props.restaurant.id, this.props.currentUser.id)
         }
         this.props.flipCard()
     }
@@ -60,9 +64,9 @@ class RestaurantCardBack extends React.Component {
                 <Card.Description>{this.props.restaurant.address1}</Card.Description>
                 <Card.Description>{this.props.restaurant.city}, {this.props.restaurant.state} {this.props.restaurant.zip_code}</Card.Description>
                 <br></br>
-                <VoteField userRestaurant={this.props.currentUser ? this.props.currentUser.users_restaurants.find(res => res.restaurant_id === this.props.restaurant.id) : null} restaurant={this.props.restaurant}></VoteField>
+                <VoteField restaurant={this.props.restaurant}></VoteField>
                 <br></br>
-                {profileButton()}<Button size="small">Info</Button><Button size="small" onClick={this.handleDoneSubmit}>Done</Button>
+                {profileButton()}<Button size="small">Info</Button><Button size="small" onClick={this.props.currentUser ? this.handleDoneSubmit : this.props.flipCard}>Done</Button>
                 </>
             </Card.Content>
         </Card>
@@ -70,11 +74,16 @@ class RestaurantCardBack extends React.Component {
     }
 }}
 
+const mapStateToProps = (state) => ({
+    stats: state.stats.state
+})
+
 const mapDispatchToProps = (dispatch) => ({
     addToProfile: (restaurant) => dispatch({type: "ADD_TO_PROFILE", restaurant}),
     addRestaurantToProfile: (restaurant, user, redirect) => dispatch(addRestaurantToProfile(restaurant, user, redirect)),
     updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload}),
-    removeFromProfile: (user_restaurant, flip) => dispatch(removeFromProfile(user_restaurant, flip))  
+    removeFromProfile: (user_restaurant, flip) => dispatch(removeFromProfile(user_restaurant, flip)),
+    updateStats: (bottomless, restaurant_id, user_id) => dispatch(updateStats(bottomless, restaurant_id, user_id)) 
 })
 
-export default connect(null, mapDispatchToProps)(RestaurantCardBack)
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantCardBack)

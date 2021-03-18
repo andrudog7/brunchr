@@ -4,6 +4,8 @@ const signUpUser = (user) => ({type: "SIGN_UP_USER", payload: user})
 const loginUser = (user) => ({type: "LOGIN_USER", payload: user})
 const addRestaurant = (restaurant) => ({type: "ADD_TO_PROFILE", restaurant})
 const removeRestaurant = (restaurant_id) => ({type: "REMOVE_FROM_PROFILE", restaurant_id})
+const updateRestaurant = (data) => ({type: "UPDATE_RESTAURANT", data})
+const getUserStats = (stats) => ({type: "GET_USER_STATS", stats})
 
 export const fetchNewUser = (state, redirectToProfile) => {
     return (dispatch) => {
@@ -59,6 +61,7 @@ export const fetchUser = (state, redirectToProfile) => {
         .then(data => {
             localStorage.setItem("jwt", data.jwt)
             dispatch(loginUser(data.user))
+            dispatch(getUserStats(data.user.users_restaurants))
             redirectToProfile()
         })
         .catch(error => {
@@ -112,6 +115,31 @@ export const removeFromProfile = (user_restaurant, flip) => {
         .then(data => {
             dispatch(removeRestaurant(user_restaurant.restaurant_id))
             flip()
+        })
+}
+}
+
+export const updateStats = (bottomless, restaurant_id, user_id) => {
+    return (dispatch) => {
+    let obj = {
+        users_restaurants: {
+            restaurant_id: restaurant_id,
+            user_id: user_id,
+            bottomless: bottomless
+        }
+    }
+    fetch(`http://127.0.0.1:3000/users_restaurants`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                "Authorization" : `Bearer ${localStorage.getItem('jwt')}`
+            },
+            body: JSON.stringify(obj)
+        })
+        .then(r => r.json())
+        .then(data => {
+            dispatch(updateRestaurant(data))
         })
 }
 }

@@ -13,10 +13,9 @@ class ProfileContainer extends React.Component {
             return this.props.currentUser.my_restaurants.map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
                 ))}
-
+        
         return(
             <div>
-                
                 <Header style={{textAlign:"left"}}>
                     <Image circular src={this.props.currentUser.my_image} size='huge'/>
                     {this.props.currentUser.username}
@@ -33,7 +32,8 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: state.currentUser.state
+    currentUser: state.currentUser.state,
+    currentStats: state.stats
 })
 
 const mapDispatchToProps = (dispatch) => ({

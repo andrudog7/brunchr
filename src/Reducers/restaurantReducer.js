@@ -49,6 +49,7 @@ export default function restaurantReducer(state = {restaurants: [], loading: fal
                         ...state, //copying the orignal state
                             restaurants: newArray, //reassingning todos to new array
                     };
+                
         default:
             return state
     }
