@@ -119,14 +119,23 @@ export const removeFromProfile = (user_restaurant, flip) => {
 }
 }
 
-export const updateStats = (bottomless, restaurant_id, user_id) => {
+export const updateStats = (attribute, restaurant_id, user_id) => {
+    debugger
+    let obj
     return (dispatch) => {
-    let obj = {
+        if (!!attribute.reservations) {
+        obj = {
         users_restaurants: {
             restaurant_id: restaurant_id,
             user_id: user_id,
-            bottomless: bottomless
-        }
+            reservations: attribute.reservations
+        }}} else if (!!attribute.bottomless) {
+            obj = {
+                users_restaurants: {
+                    restaurant_id: restaurant_id,
+                    user_id: user_id,
+                    bottomless: attribute.bottomless
+        }}
     }
     fetch(`http://127.0.0.1:3000/users_restaurants`, {
             method: 'POST',

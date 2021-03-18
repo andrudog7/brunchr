@@ -49,6 +49,46 @@ export default function restaurantReducer(state = {restaurants: [], loading: fal
                         ...state, //copying the orignal state
                             restaurants: newArray, //reassingning todos to new array
                     };
+                    case "ADD_RESERVATIONS_UPVOTE":
+                        restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                        count = restaurant.reservations_upvote
+                        index = state.restaurants.indexOf(restaurant); //finding index of the item
+                        newArray = [...state.restaurants]; //making a new array
+                        newArray[index].reservations_upvote = count + 1//changing value in the new array
+                        return { 
+                            ...state, //copying the orignal state
+                                restaurants: newArray, //reassingning todos to new array
+                        };
+                    case "SUBTRACT_RESERVATIONS_UPVOTE":
+                            restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                            count = restaurant.reservations_upvote
+                            index = state.restaurants.indexOf(restaurant); //finding index of the item
+                            newArray = [...state.restaurants]; //making a new array
+                            newArray[index].reservations_upvote = count - 1//changing value in the new array
+                            return { 
+                                ...state, //copying the orignal state
+                                    restaurants: newArray, //reassingning todos to new array
+                            };
+                        case "ADD_RESERVATIONS_DOWNVOTE":
+                            restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                            count = restaurant.reservations_downvote
+                            index = state.restaurants.indexOf(restaurant); //finding index of the item
+                            newArray = [...state.restaurants]; //making a new array
+                            newArray[index].reservations_downvote = count + 1//changing value in the new array
+                            return { 
+                                ...state, //copying the orignal state
+                                    restaurants: newArray, //reassingning todos to new array
+                            };
+                            case "SUBTRACT_RESERVATIONS_DOWNVOTE":
+                                restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                count = restaurant.reservations_downvote
+                                index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                newArray = [...state.restaurants]; //making a new array
+                                newArray[index].reservations_downvote = count - 1//changing value in the new array
+                                return { 
+                                    ...state, //copying the orignal state
+                                        restaurants: newArray, //reassingning todos to new array
+                                };
                 
         default:
             return state
