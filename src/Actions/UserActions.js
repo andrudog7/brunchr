@@ -120,9 +120,9 @@ export const removeFromProfile = (user_restaurant, flip) => {
 }
 
 export const updateStats = (attribute, restaurant_id, user_id) => {
-    debugger
     let obj
     return (dispatch) => {
+        debugger
         if (!!attribute.reservations) {
         obj = {
         users_restaurants: {
@@ -135,8 +135,13 @@ export const updateStats = (attribute, restaurant_id, user_id) => {
                     restaurant_id: restaurant_id,
                     user_id: user_id,
                     bottomless: attribute.bottomless
-        }}
-    }
+        }}}else if (!!attribute.drink_specials) {
+            obj = {
+                users_restaurants: {
+                    restaurant_id: restaurant_id,
+                    user_id: user_id,
+                    drink_specials: attribute.drink_specials
+        }}}
     fetch(`http://127.0.0.1:3000/users_restaurants`, {
             method: 'POST',
             headers: {

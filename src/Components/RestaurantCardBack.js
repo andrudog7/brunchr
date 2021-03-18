@@ -29,15 +29,15 @@ class RestaurantCardBack extends React.Component {
 
     handleDoneSubmit = (event) => {
         event.preventDefault()
-        let bottomless = ""
-        if (document.getElementById(`bottomlessup-${this.props.restaurant.id}`).className.includes("blue")) {
-            bottomless = "true"
-        } else if (document.getElementById(`bottomlessdown-${this.props.restaurant.id}`).className.includes("red")) {
-            bottomless = "false"
-        }
-        if (bottomless != "") {
-            this.props.updateStats(bottomless, this.props.restaurant.id, this.props.currentUser.id)
-        }
+        // let bottomless = ""
+        // if (document.getElementById(`bottomlessup-${this.props.restaurant.id}`).className.includes("blue")) {
+        //     bottomless = "true"
+        // } else if (document.getElementById(`bottomlessdown-${this.props.restaurant.id}`).className.includes("red")) {
+        //     bottomless = "false"
+        // }
+        // if (bottomless != "") {
+        //     this.props.updateStats(bottomless, this.props.restaurant.id, this.props.currentUser.id)
+        // }
         this.props.flipCard()
     }
 
@@ -66,7 +66,7 @@ class RestaurantCardBack extends React.Component {
                 <br></br>
                 <VoteField restaurant={this.props.restaurant}></VoteField>
                 <br></br>
-                {profileButton()}<Button size="small">Info</Button><Button size="small" onClick={this.props.currentUser ? this.handleDoneSubmit : this.props.flipCard}>Done</Button>
+                {profileButton()}<Button size="small">Info</Button><Button size="small" onClick={this.handleDoneSubmit}>Done</Button>
                 </>
             </Card.Content>
         </Card>

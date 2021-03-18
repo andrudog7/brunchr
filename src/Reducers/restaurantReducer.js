@@ -89,6 +89,46 @@ export default function restaurantReducer(state = {restaurants: [], loading: fal
                                     ...state, //copying the orignal state
                                         restaurants: newArray, //reassingning todos to new array
                                 };
+                                case "ADD_DRINK_SPECIALS_UPVOTE":
+                                    restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                    count = restaurant.drink_specials_upvote
+                                    index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                    newArray = [...state.restaurants]; //making a new array
+                                    newArray[index].drink_specials_upvote = count + 1//changing value in the new array
+                                    return { 
+                                        ...state, //copying the orignal state
+                                            restaurants: newArray, //reassingning todos to new array
+                                    };
+                                case "SUBTRACT_DRINK_SPECIALS_UPVOTE":
+                                        restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                        count = restaurant.drink_specials_upvote
+                                        index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                        newArray = [...state.restaurants]; //making a new array
+                                        newArray[index].drink_specials_upvote = count - 1//changing value in the new array
+                                        return { 
+                                            ...state, //copying the orignal state
+                                                restaurants: newArray, //reassingning todos to new array
+                                        };
+                                    case "ADD_DRINK_SPECIALS_DOWNVOTE":
+                                        restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                        count = restaurant.drink_specials_downvote
+                                        index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                        newArray = [...state.restaurants]; //making a new array
+                                        newArray[index].drink_specials_downvote = count + 1//changing value in the new array
+                                        return { 
+                                            ...state, //copying the orignal state
+                                                restaurants: newArray, //reassingning todos to new array
+                                        };
+                                        case "SUBTRACT_DRINK_SPECIALS_DOWNVOTE":
+                                            restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                            count = restaurant.drink_specials_downvote
+                                            index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                            newArray = [...state.restaurants]; //making a new array
+                                            newArray[index].drink_specials_downvote = count - 1//changing value in the new array
+                                            return { 
+                                                ...state, //copying the orignal state
+                                                    restaurants: newArray, //reassingning todos to new array
+                                            };
                 
         default:
             return state
