@@ -1,5 +1,5 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {Card, Button, Icon} from 'semantic-ui-react'
 import { addRestaurantToProfile, removeFromProfile, updateStats } from '../Actions/UserActions'
@@ -42,6 +42,7 @@ class RestaurantCardBack extends React.Component {
     }
 
     render() {
+        let link=`/restaurants/${this.props.restaurant.id}`
         const profileButton = () => {
             if (this.props.currentUser && window.location.pathname === "/profile" && this.props.currentUser.my_restaurants.find(res => res.id === this.props.restaurant.id)) {
                 return <Button size="small" onClick={this.removeFromProfile}>Remove</Button> 
@@ -66,7 +67,7 @@ class RestaurantCardBack extends React.Component {
                 <br></br>
                 <VoteField restaurant={this.props.restaurant}></VoteField>
                 <br></br>
-                {profileButton()}<Button size="small">Info</Button><Button size="small" onClick={this.handleDoneSubmit}>Done</Button>
+                {profileButton()}<NavLink to={link}><Button size="small">Info</Button></NavLink><Button size="small" onClick={this.handleDoneSubmit}>Done</Button>
                 </>
             </Card.Content>
         </Card>

@@ -16,6 +16,8 @@ class RestaurantContainer extends React.Component {
         dragBrunch: false
     }
 
+    
+
     handleCheckBox = (event) => {
         if (event.target.textContent === "Bottomless") {
             this.setState((prevState) => ({
@@ -40,22 +42,22 @@ class RestaurantContainer extends React.Component {
             if (this.state.bottomless) {
                 return this.props.restaurants.filter(res => res.bottomless_upvote > res.bottomless_downvote).map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-                ))} else if (this.state.drinkSpecials) {
-                    return this.props.restaurants.filter(res => res.drink_specials_upvote > res.drink_specials_downvote).map(res => (
-                        <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-                    ))} else if (this.state.reservations) {
-                        return this.props.restaurants.filter(res => res.reservations_upvote > res.reservations_downvote).map(res => (
-                            <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-                        ))} else if (this.state.outdoorSeating) {
-                            return this.props.restaurants.filter(res => res.outdoor_seating_upvote > res.outdoor_seating_downvote).map(res => (
-                                <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-                            ))} else if (this.state.dragBrunch) {
-                                return this.props.restaurants.filter(res => res.drag_upvote > res.drag_downvote).map(res => (
-                                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-                                ))} else {
-            return this.props.restaurants.map(res => (
+            ))} else if (this.state.drinkSpecials) {
+                return this.props.restaurants.filter(res => res.drink_specials_upvote > res.drink_specials_downvote).map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-                ))}}
+            ))} else if (this.state.reservations) {
+                return this.props.restaurants.filter(res => res.reservations_upvote > res.reservations_downvote).map(res => (
+                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
+            ))} else if (this.state.outdoorSeating) {
+                return this.props.restaurants.filter(res => res.outdoor_seating_upvote > res.outdoor_seating_downvote).map(res => (
+                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
+            ))} else if (this.state.dragBrunch) {
+                return this.props.restaurants.filter(res => res.drag_upvote > res.drag_downvote).map(res => (
+                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
+            ))} else {
+                return this.props.restaurants.map(res => (
+                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
+            ))}}
 
         const userHeader = () => {
             if (this.props.currentUser) {
@@ -87,7 +89,7 @@ class RestaurantContainer extends React.Component {
                 {userHeader()}
                 <br></br>
                 <NavBar></NavBar>
-                <SearchField ></SearchField>
+                <SearchField></SearchField>
                 <br></br>
                 {showFilter()}
                 <br></br>

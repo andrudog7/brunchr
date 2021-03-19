@@ -5,7 +5,7 @@ import {fetchRestaurants, fetchingRestaurants} from '../Actions/RestaurantAction
 
 class SearchField extends React.Component {
     state = {
-        query: "",
+        query: ""
     }
 
     handleChange = (event) => {

@@ -9,6 +9,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {Header, Image, Container} from 'semantic-ui-react'
 import brunchr from '../Images/brunchrlogo.jpeg'
 import RestaurantContainer from './RestaurantContainer';
+import GetId from '../Components/GetId';
 
 class App extends React.Component {
   render() {
@@ -24,7 +25,8 @@ class App extends React.Component {
             <Route exact path="/login" component={() => <LoginForm/>}></Route>
             <Route exact path="/signup" component={() => <SignUpForm/>}/>
             <Route exact path="/profile" component={() => <ProfileContainer/>}></Route>
-            <Route exact path="/restaurants" component={() => <RestaurantContainer/>}></Route>   
+            <Route exact path="/restaurants" component={() => <RestaurantContainer/>}></Route>
+            <Route exact path="/restaurants/:id" component={GetId}></Route>
           </Switch>
         </Container>
         </Router>
