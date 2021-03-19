@@ -141,6 +141,18 @@ export const updateStats = (attribute, restaurant_id, user_id) => {
                     restaurant_id: restaurant_id,
                     user_id: user_id,
                     drink_specials: attribute.drink_specials
+        }}}else if (!!attribute.outdoor_seating) {
+            obj = {
+                users_restaurants: {
+                    restaurant_id: restaurant_id,
+                    user_id: user_id,
+                    outdoor_seating: attribute.outdoor_seating
+        }}}else if (!!attribute.drag_brunch) {
+            obj = {
+                users_restaurants: {
+                    restaurant_id: restaurant_id,
+                    user_id: user_id,
+                    drag_brunch: attribute.drag_brunch
         }}}
     fetch(`http://127.0.0.1:3000/users_restaurants`, {
             method: 'POST',

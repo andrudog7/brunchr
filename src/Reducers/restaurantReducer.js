@@ -129,6 +129,86 @@ export default function restaurantReducer(state = {restaurants: [], loading: fal
                                                 ...state, //copying the orignal state
                                                     restaurants: newArray, //reassingning todos to new array
                                             };
+                                            case "ADD_OUTDOOR_SEATING_UPVOTE":
+                                    restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                    count = restaurant.outdoor_seating_upvote
+                                    index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                    newArray = [...state.restaurants]; //making a new array
+                                    newArray[index].outdoor_seating_upvote = count + 1//changing value in the new array
+                                    return { 
+                                        ...state, //copying the orignal state
+                                            restaurants: newArray, //reassingning todos to new array
+                                    };
+                                case "SUBTRACT_OUTDOOR_SEATING_UPVOTE":
+                                        restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                        count = restaurant.outdoor_seating_upvote
+                                        index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                        newArray = [...state.restaurants]; //making a new array
+                                        newArray[index].outdoor_seating_upvote = count - 1//changing value in the new array
+                                        return { 
+                                            ...state, //copying the orignal state
+                                                restaurants: newArray, //reassingning todos to new array
+                                        };
+                                    case "ADD_OUTDOOR_SEATING_DOWNVOTE":
+                                        restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                        count = restaurant.outdoor_seating_downvote
+                                        index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                        newArray = [...state.restaurants]; //making a new array
+                                        newArray[index].outdoor_seating_downvote = count + 1//changing value in the new array
+                                        return { 
+                                            ...state, //copying the orignal state
+                                                restaurants: newArray, //reassingning todos to new array
+                                        };
+                                        case "SUBTRACT_OUTDOOR_SEATING_DOWNVOTE":
+                                            restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                            count = restaurant.outdoor_seating_downvote
+                                            index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                            newArray = [...state.restaurants]; //making a new array
+                                            newArray[index].outdoor_seating_downvote = count - 1//changing value in the new array
+                                            return { 
+                                                ...state, //copying the orignal state
+                                                    restaurants: newArray, //reassingning todos to new array
+                                            };
+                                            case "ADD_DRAG_BRUNCH_UPVOTE":
+                                    restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                    count = restaurant.drag_upvote
+                                    index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                    newArray = [...state.restaurants]; //making a new array
+                                    newArray[index].drag_upvote = count + 1//changing value in the new array
+                                    return { 
+                                        ...state, //copying the orignal state
+                                            restaurants: newArray, //reassingning todos to new array
+                                    };
+                                case "SUBTRACT_DRAG_BRUNCH_UPVOTE":
+                                        restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                        count = restaurant.drag_upvote
+                                        index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                        newArray = [...state.restaurants]; //making a new array
+                                        newArray[index].drag_upvote = count - 1//changing value in the new array
+                                        return { 
+                                            ...state, //copying the orignal state
+                                                restaurants: newArray, //reassingning todos to new array
+                                        };
+                                    case "ADD_DRAG_BRUNCH_DOWNVOTE":
+                                        restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                        count = restaurant.drag_downvote
+                                        index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                        newArray = [...state.restaurants]; //making a new array
+                                        newArray[index].drag_downvote = count + 1//changing value in the new array
+                                        return { 
+                                            ...state, //copying the orignal state
+                                                restaurants: newArray, //reassingning todos to new array
+                                        };
+                                        case "SUBTRACT_DRAG_BRUNCH_DOWNVOTE":
+                                            restaurant = state.restaurants.find(res => res.id === action.restaurant)
+                                            count = restaurant.drag_downvote
+                                            index = state.restaurants.indexOf(restaurant); //finding index of the item
+                                            newArray = [...state.restaurants]; //making a new array
+                                            newArray[index].drag_downvote = count - 1//changing value in the new array
+                                            return { 
+                                                ...state, //copying the orignal state
+                                                    restaurants: newArray, //reassingning todos to new array
+                                            };
                 
         default:
             return state
