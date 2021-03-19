@@ -17,7 +17,6 @@ class App extends React.Component {
         <Router>
         <Header as='h2' style={{marginTop:"10px"}} >
           <Image circular src={brunchr} className="App-logo" alt="logo" />Brunchr
-          
         </Header> 
         <Container>
           <Switch>

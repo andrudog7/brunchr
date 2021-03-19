@@ -122,7 +122,6 @@ export const removeFromProfile = (user_restaurant, flip) => {
 export const updateStats = (attribute, restaurant_id, user_id) => {
     let obj
     return (dispatch) => {
-        debugger
         if (!!attribute.reservations) {
         obj = {
         users_restaurants: {
