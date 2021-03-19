@@ -1,5 +1,5 @@
 import React from 'react' 
-import {Dropdown, Menu, Header, Image} from 'semantic-ui-react'
+import {Dropdown, Menu} from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 

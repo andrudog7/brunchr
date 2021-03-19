@@ -1,5 +1,3 @@
-import { findAllByPlaceholderText } from "@testing-library/dom"
-
 const signUpUser = (user) => ({type: "SIGN_UP_USER", payload: user})
 const loginUser = (user) => ({type: "LOGIN_USER", payload: user})
 const addRestaurant = (restaurant) => ({type: "ADD_TO_PROFILE", restaurant})

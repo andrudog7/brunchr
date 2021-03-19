@@ -1,9 +1,9 @@
 import React from 'react' 
-import {Header, Image} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import NavBar from './NavBar'
 import RestaurantShowCard from '../Components/RestaurantShowCard'
 import {Card} from 'semantic-ui-react'
+import UserHeader from '../Components/UserHeader'
 
 
 class ProfileContainer extends React.Component {
@@ -16,10 +16,7 @@ class ProfileContainer extends React.Component {
         
         return(
             <div>
-                <Header style={{textAlign:"left"}}>
-                    <Image circular src={this.props.currentUser.my_image} size='huge'/>
-                    {this.props.currentUser.username}
-                </Header>
+                {UserHeader(this.props.currentUser)}
                 <br></br>
                 <NavBar></NavBar>
                 <br></br>

@@ -16,7 +16,7 @@ export default function userReducer(state = [], action){
                 ...state, 
                     state: {
                         ...state.state,
-                        my_restaurants: newArray.concat(action.restaurant)
+                        my_restaurants: [action.restaurant, ...newArray]
                     } 
             };
         case "REMOVE_FROM_PROFILE":

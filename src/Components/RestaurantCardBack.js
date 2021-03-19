@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink, Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
-import {Card, Button, Icon} from 'semantic-ui-react'
+import {Card, Button} from 'semantic-ui-react'
 import { addRestaurantToProfile, removeFromProfile, updateStats } from '../Actions/UserActions'
 import VoteField from './VoteField'
 
@@ -29,15 +29,6 @@ class RestaurantCardBack extends React.Component {
 
     handleDoneSubmit = (event) => {
         event.preventDefault()
-        // let bottomless = ""
-        // if (document.getElementById(`bottomlessup-${this.props.restaurant.id}`).className.includes("blue")) {
-        //     bottomless = "true"
-        // } else if (document.getElementById(`bottomlessdown-${this.props.restaurant.id}`).className.includes("red")) {
-        //     bottomless = "false"
-        // }
-        // if (bottomless != "") {
-        //     this.props.updateStats(bottomless, this.props.restaurant.id, this.props.currentUser.id)
-        // }
         this.props.flipCard()
     }
 
@@ -47,7 +38,7 @@ class RestaurantCardBack extends React.Component {
             if (this.props.currentUser && window.location.pathname === "/profile" && this.props.currentUser.my_restaurants.find(res => res.id === this.props.restaurant.id)) {
                 return <Button size="small" onClick={this.removeFromProfile}>Remove</Button> 
             } else if (this.props.currentUser && this.props.currentUser.my_restaurants.find(res => res.id === this.props.restaurant.id)) {
-                return null
+                return <Button primary disabled size="small">Favorited</Button> 
             } else if (this.props.currentUser) {
                  return <Button size="small" onClick={this.addToProfile}>Favorite</Button>   
                 }

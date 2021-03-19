@@ -9,6 +9,15 @@ export default function restaurantReducer(state = {restaurants: [], loading: fal
             return {restaurants: action.payload, loading: false};
         case "FETCHING_RESTAURANTS":
             return {...state, loading: true};
+        case "ADD_COMMENT":
+            restaurant = state.restaurants.find(res => res.id === action.restaurant.id)
+                index = state.restaurants.indexOf(restaurant); //finding index of the item
+                newArray = [...state.restaurants];
+                newArray.splice(index, 1, action.restaurant)
+                return { //copying the orignal state
+                    ...state,
+                    restaurants: newArray //reassingning todos to new array
+                }
         case "ADD_BOTTOMLESS_UPVOTE":
             restaurant = state.restaurants.find(res => res.id === action.restaurant)
             count = restaurant.bottomless_upvote

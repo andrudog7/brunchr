@@ -1,9 +1,7 @@
 import React from 'react' 
-import NavBar from '../Containers/NavBar'
-import { Button, Header, Form } from 'semantic-ui-react'
-import {Redirect} from 'react-router-dom'
+import { Button, Form } from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import {fetchUser} from '../Actions/UserActions'
+import {addComment} from '../Actions/CommentActions'
 
 
 class CommentForm extends React.Component {
@@ -19,29 +17,31 @@ class CommentForm extends React.Component {
 
     handleCommentSubmit = (event) => {
         event.preventDefault()
-        this.props.addComment(this.state.query)
+        this.props.addComment(this.state.comment, this.props.restaurantId, this.props.userId)
+        this.setState({
+            comment: ""
+        })
     }
 
     render() {
         return(
             <div style={{textAlign:"center"}}>
-                <Header as='h3'>Comments</Header><br></br>
                 <Form style={{textAlign:"center"}} onSubmit={this.handleCommentSubmit}>
                 
                 <Form.Field inline>
-                    <textarea rows="3" columns="4" style={{width:"250px"}}placeholder='Add New Comment' name="username" onChange={this.handleChange} value={this.state.username} />
+                    <textarea rows="3" columns="4" style={{width:"250px"}}placeholder='Add New Comment' name="comment" onChange={this.handleChange} value={this.state.comment} />
                     
                 </Form.Field>
                 <Button size='mini' type='submit'>Submit</Button>
                 </Form>
+                <br></br>
             </div>
         )
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchUser: (state, prop) => dispatch(fetchUser(state, prop)),
-    updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload})
+    addComment: (comment, restaurantId, userId) => dispatch(addComment(comment, restaurantId, userId)),
 })
 
 

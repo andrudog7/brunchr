@@ -1,15 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Grid, List, Image, Menu} from 'semantic-ui-react'
+import {Grid, List, Image, Menu, Header} from 'semantic-ui-react'
 import NavBar from '../Containers/NavBar'
 import CommentForm from './CommentForm'
+import UserHeader from './UserHeader'
 
 class RestaurantInfoPage extends React.Component {
-    findRestaurant = () => {
-
-    }
-
+    
     render() {
         const restaurant = this.props.restaurants.find(res => res.id === parseInt(this.props.restaurantId.id))
 
@@ -39,13 +37,13 @@ class RestaurantInfoPage extends React.Component {
                         </Menu.Item>
                         </Menu>
                     </Grid.Column>
-                    
                     </Grid>)
                 
             })
         }
         return(
             <>
+            {UserHeader(this.props.currentUser)}
             <NavBar></NavBar>
             <br></br>
             <Grid style={{justifyContent:"center"}}>
@@ -91,24 +89,24 @@ class RestaurantInfoPage extends React.Component {
                         <List.Icon name='food' />
                         <List.Content style={{textAlign:"left"}}>
                             <List.Header>Brunchr Ratings</List.Header>
-                            <List.Description>Bottomless: {restaurant.bottomless_upvote > restaurant.bottomless_upvote ? "yes" : "no"}</List.Description>
-                            <List.Description>Drink Specials: {restaurant.drink_specials_upvote > restaurant.drink_specials_upvote ? "yes" : "no"}</List.Description>
-                            <List.Description>Takes Reservations: {restaurant.reservations_upvote > restaurant.reservations_upvote ? "yes" : "no"}</List.Description>
-                            <List.Description>Outdoor Seating: {restaurant.outdoor_seating_upvote > restaurant.outdoor_seating_upvote ? "yes" : "no"}</List.Description>
-                            <List.Description>Drag Show: {restaurant.drag_brunch_upvote > restaurant.drag_brunch_upvote ? "yes" : "no"}</List.Description>
+                            <List.Description>Bottomless: {restaurant.bottomless_upvote > restaurant.bottomless_downvote ? "yes" : "no"}</List.Description>
+                            <List.Description>Drink Specials: {restaurant.drink_specials_upvote > restaurant.drink_specials_downvote ? "yes" : "no"}</List.Description>
+                            <List.Description>Takes Reservations: {restaurant.reservations_upvote > restaurant.reservations_downvote ? "yes" : "no"}</List.Description>
+                            <List.Description>Outdoor Seating: {restaurant.outdoor_seating_upvote > restaurant.outdoor_seating_downvote ? "yes" : "no"}</List.Description>
+                            <List.Description>Drag Show: {restaurant.drag_brunch_upvote > restaurant.drag_brunch_downvote ? "yes" : "no"}</List.Description>
                         </List.Content>
                     </List.Item>
                 </List>   
             </Grid.Column>  
             <Grid.Column width={7}>
                 <List>  
+                 <Header as='h3'>Comments</Header>
                     <List.Item>
-                        <CommentForm></CommentForm>
+                        {this.props.currentUser ? <CommentForm userId={this.props.currentUser.id} restaurantId={restaurant.id}></CommentForm> : null}
                     </List.Item>
                     {showComments()}
                 </List>    
             </Grid.Column>
-            
           </Grid>
           </>
     )
@@ -117,8 +115,7 @@ class RestaurantInfoPage extends React.Component {
 
 const mapStateToProps = (state) => ({
     restaurants: state.restaurants.restaurants,
-    currentUser: state.currentUser.state,
-    loading: state.restaurants.loading
+    currentUser: state.currentUser.state
 })
 
 export default connect(mapStateToProps)(RestaurantInfoPage)

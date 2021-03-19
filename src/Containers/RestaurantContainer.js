@@ -1,10 +1,11 @@
 import React from 'react' 
 import {connect} from 'react-redux'
-import {Card, Header, Image} from 'semantic-ui-react'
+import {Card} from 'semantic-ui-react'
 import SearchField from '../Components/SearchField'
 import Filter from '../Components/Filter'
 import RestaurantShowCard from '../Components/RestaurantShowCard'
 import NavBar from './NavBar'
+import UserHeader from '../Components/UserHeader'
 
 class RestaurantContainer extends React.Component {
 
@@ -15,8 +16,6 @@ class RestaurantContainer extends React.Component {
         outdoorSeating: false,
         dragBrunch: false
     }
-
-    
 
     handleCheckBox = (event) => {
         if (event.target.textContent === "Bottomless") {
@@ -59,17 +58,6 @@ class RestaurantContainer extends React.Component {
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
             ))}}
 
-        const userHeader = () => {
-            if (this.props.currentUser) {
-                return (
-                    <Header style={{textAlign:"left"}}>
-                    <Image circular src={this.props.currentUser.my_image} size='huge'/>
-                    {this.props.currentUser.username}
-                </Header>
-                )
-            }
-        }
-
         const showFilter = () => {
             if (this.props.restaurants[0]) {
                 return (
@@ -86,7 +74,7 @@ class RestaurantContainer extends React.Component {
         } else {
         return(
             <div>
-                {userHeader()}
+                {UserHeader(this.props.currentUser)}
                 <br></br>
                 <NavBar></NavBar>
                 <SearchField></SearchField>
