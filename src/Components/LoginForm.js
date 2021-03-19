@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
         return(
             <div>
                 <NavBar></NavBar>
-                <Header size="huge">Login Below</Header>
+                <Header size="huge">Login</Header>
                 <Form style={{textAlign:"center"}} onSubmit={this.handleLoginSubmit}>
                 <Form.Field inline>
                     <label style={{width:"100px"}}>Username</label>

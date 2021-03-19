@@ -90,7 +90,6 @@ export const addRestaurantToProfile = (restaurant, user, redirect) => {
         .then(r => r.json())
         .then(data => {
             dispatch(addRestaurant(data))
-            // redirect()
         })
 }
 }
