@@ -99,7 +99,7 @@ export const addRestaurantToProfile = (restaurant, user, redirect) => {
 }
 }
 
-export const removeFromProfile = (user_restaurant, restaurant, flip) => {
+export const removeFromProfile = (user_restaurant, restaurant) => {
     return (dispatch) => {
     let obj = {
         users_restaurants: {
@@ -120,7 +120,6 @@ export const removeFromProfile = (user_restaurant, restaurant, flip) => {
             data.favorite = "false"
             data.search = restaurant.search
             dispatch(removeRestaurant(user_restaurant.restaurant_id))
-            // flip()
         })
 }
 }
