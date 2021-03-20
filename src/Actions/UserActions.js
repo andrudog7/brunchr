@@ -5,6 +5,7 @@ const removeRestaurant = (restaurant_id) => ({type: "REMOVE_FROM_PROFILE", resta
 const updateRestaurant = (data) => ({type: "UPDATE_RESTAURANT", data})
 const getUserStats = (stats) => ({type: "GET_USER_STATS", stats})
 const addInitialRestaurants = (restaurants) => ({type: "ADD_INITIAL_RESTAURANTS", restaurants})
+const addStat = (data) => ({type: "ADD_STAT", data})
 
 export const fetchNewUser = (state, redirectToProfile) => {
     return (dispatch) => {
@@ -90,9 +91,10 @@ export const addRestaurantToProfile = (restaurant, user, redirect) => {
         })
         .then(r => r.json())
         .then(data => {
-            data.favorite = "true"
-            data.search = restaurant.search
-            dispatch(addRestaurant(data))
+            data.restaurant.favorite = "true"
+            data.restaurant.search = restaurant.search
+            dispatch(addRestaurant(data.restaurant))
+            dispatch(addStat(data.relationship))
         })
 }
 }

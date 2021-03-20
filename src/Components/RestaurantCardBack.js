@@ -17,7 +17,7 @@ class RestaurantCardBack extends React.Component {
 
     removeFromProfile = (event) => {
         event.preventDefault()
-        this.props.removeFromProfile(this.props.currentUser.users_restaurants.find(res => res.restaurant_id === this.props.restaurant.id), this.props.restaurant, this.props.flipCard)
+        this.props.removeFromProfile(this.props.stats.find(rel => rel.restaurant_id === this.props.restaurant.id), this.props.restaurant, this.props.flipCard)
     }
 
     redirectToProfile = () => {

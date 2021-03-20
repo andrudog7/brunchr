@@ -2,9 +2,14 @@ export default function statsReducer(state = [], action){
     let index 
     let relationship 
     let newArray 
+    let combined
     switch(action.type){
         case "GET_USER_STATS":
             return {state: action.stats};
+        case "ADD_STAT":
+            newArray = [...state.state]
+            combined = [action.data]
+            return { state: combined.concat(newArray)} 
         case "UPDATE_RESTAURANT":
             if (state.state.find(rel => rel.id === action.data.id)) {
                 relationship = state.state.find(rel => rel.id === action.data.id)

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Grid, List, Image, Menu, Header} from 'semantic-ui-react'
+import {Grid, List, Image, Menu, Header, Icon} from 'semantic-ui-react'
 import NavBar from '../Containers/NavBar'
 import CommentForm from './CommentForm'
 import UserHeader from './UserHeader'
@@ -22,7 +22,7 @@ class RestaurantInfoPage extends React.Component {
         }
 
         const showComments = () => {
-            if (this.props.comments) {
+            if (!!this.props.comments) {
             return this.props.comments.map(comment => {
                 return (
                     <Grid>
@@ -31,11 +31,12 @@ class RestaurantInfoPage extends React.Component {
                         <Menu.Item>
                             <List>
                             <List.Item>
-                                
-                                <List.Content style={{textAlign:"left"}}><List.Icon name='user'></List.Icon>
+                                <List.Header style={{textAlign:"center"}}>{comment.text}</List.Header>
+                                <List.Content style={{textAlign:"left"}}>
+                                    <Image size="tiny" src={comment.user_image}></Image>
                                     <List.Header as='a'>{comment.username}</List.Header>
                                 <List.Description as='a'>{comment.created_at} </List.Description><br></br>
-                                <List.Header style={{textAlign:"center"}}>{comment.text}</List.Header>
+                                <List.Header style={{textAlign:"center"}}></List.Header>
                                 </List.Content>
                             </List.Item>
                             </List>
@@ -92,11 +93,11 @@ class RestaurantInfoPage extends React.Component {
                         <List.Icon name='food' />
                         <List.Content style={{textAlign:"left"}}>
                             <List.Header>Brunchr Highlights</List.Header>
-                            <List.Description>Bottomless: {restaurant.bottomless_upvote > restaurant.bottomless_downvote ? "yes" : "no"}</List.Description>
-                            <List.Description>Drink Specials: {restaurant.drink_specials_upvote > restaurant.drink_specials_downvote ? "yes" : "no"}</List.Description>
-                            <List.Description>Takes Reservations: {restaurant.reservations_upvote > restaurant.reservations_downvote ? "yes" : "no"}</List.Description>
-                            <List.Description>Outdoor Seating: {restaurant.outdoor_seating_upvote > restaurant.outdoor_seating_downvote ? "yes" : "no"}</List.Description>
-                            <List.Description>Drag Show: {restaurant.drag_brunch_upvote > restaurant.drag_brunch_downvote ? "yes" : "no"}</List.Description>
+                            <List.Description>Bottomless: {restaurant.bottomless_upvote > restaurant.bottomless_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
+                            <List.Description>Drink Specials: {restaurant.drink_specials_upvote > restaurant.drink_specials_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
+                            <List.Description>Takes Reservations: {restaurant.reservations_upvote > restaurant.reservations_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
+                            <List.Description>Outdoor Seating: {restaurant.outdoor_seating_upvote > restaurant.outdoor_seating_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
+                            <List.Description>Drag Show: {restaurant.drag_brunch_upvote > restaurant.drag_brunch_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
                         </List.Content>
                     </List.Item>
                 </List>   
@@ -105,7 +106,7 @@ class RestaurantInfoPage extends React.Component {
                 <List>  
                  <Header as='h3'>Comments</Header>
                     <List.Item>
-                        {this.props.currentUser ? <CommentForm userId={this.props.currentUser.id} restaurantId={restaurant.id}></CommentForm> : null}
+                        {!!this.props.currentUser ? <CommentForm userId={this.props.currentUser.id} restaurantId={restaurant.id}></CommentForm> : null}
                     </List.Item>
                     {showComments()}
                 </List>    

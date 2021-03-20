@@ -18,7 +18,7 @@ class VoteField extends React.Component {
         } else if (event.target.className.includes("times") && event.target.className.includes("outline") && event.nativeEvent.path[1].innerText.includes("Bottomless")) {
             attribute.bottomless = "false"
             this.props.addBottomlessDownvote(this.props.restaurant.id)
-            if (event.target.previousElementSibling.className.includes("blue")) {
+            if (event.target.previousElementSibling.className.includes("green")) {
             this.props.subtractBottomlessUpvote(this.props.restaurant.id)
         }
         } 
@@ -37,7 +37,7 @@ class VoteField extends React.Component {
         } else if (event.target.className.includes("times") && event.target.className.includes("outline") && event.nativeEvent.path[1].innerText.includes("Reservations")) {
             attribute.reservations = "false"
             this.props.addReservationsDownvote(this.props.restaurant.id)
-            if (event.target.previousElementSibling.className.includes("blue")) {
+            if (event.target.previousElementSibling.className.includes("green")) {
             this.props.subtractReservationsUpvote(this.props.restaurant.id)
         }
         } 
@@ -56,7 +56,7 @@ class VoteField extends React.Component {
         } else if (event.target.className.includes("times") && event.target.className.includes("outline") && event.nativeEvent.path[1].innerText.includes("Drink")) {
             attribute.drink_specials = "false"
             this.props.addDrinkSpecialsDownvote(this.props.restaurant.id)
-            if (event.target.previousElementSibling.className.includes("blue")) {
+            if (event.target.previousElementSibling.className.includes("green")) {
             this.props.subtractDrinkSpecialsUpvote(this.props.restaurant.id)
         }
         } 
@@ -75,7 +75,7 @@ class VoteField extends React.Component {
         } else if (event.target.className.includes("times") && event.target.className.includes("outline") && event.nativeEvent.path[1].innerText.includes("Outdoor")) {
             attribute.outdoor_seating = "false"
             this.props.addOutdoorSeatingDownvote(this.props.restaurant.id)
-            if (event.target.previousElementSibling.className.includes("blue")) {
+            if (event.target.previousElementSibling.className.includes("green")) {
             this.props.subtractOutdoorSeatingUpvote(this.props.restaurant.id)
         }
         } 
@@ -94,7 +94,7 @@ class VoteField extends React.Component {
         } else if (event.target.className.includes("times") && event.target.className.includes("outline") && event.nativeEvent.path[1].innerText.includes("Drag")) {
             attribute.drag_brunch = "false"
             this.props.addDragBrunchDownvote(this.props.restaurant.id)
-            if (event.target.previousElementSibling.className.includes("blue")) {
+            if (event.target.previousElementSibling.className.includes("green")) {
             this.props.subtractDragBrunchUpvote(this.props.restaurant.id)
         }
         } 
@@ -108,7 +108,7 @@ class VoteField extends React.Component {
         }
         const addBottomless = () => {
             if (userRestaurant && userRestaurant.bottomless != null) {
-                return <Card.Description >{this.props.restaurant.bottomless_upvote} <Icon id={`bottomlessup-${this.props.restaurant.id}`} inverted color={userRestaurant.bottomless ? "blue" : "black"} name={userRestaurant.bottomless ? "check circle" : "check circle outline"} onClick={this.handleBottomlessClick}/> Bottomless <Icon id={`bottomlessdown-${this.props.restaurant.id}`} inverted color={userRestaurant.bottomless ? "black" : "red"} name={userRestaurant.bottomless ? "times circle outline" : "times circle"} onClick={this.handleBottomlessClick}/>{this.props.restaurant.bottomless_downvote}</Card.Description>
+                return <Card.Description >{this.props.restaurant.bottomless_upvote} <Icon id={`bottomlessup-${this.props.restaurant.id}`} inverted color={userRestaurant.bottomless ? "green" : "black"} name={userRestaurant.bottomless ? "check circle" : "check circle outline"} onClick={this.handleBottomlessClick}/> Bottomless <Icon id={`bottomlessdown-${this.props.restaurant.id}`} inverted color={userRestaurant.bottomless ? "black" : "red"} name={userRestaurant.bottomless ? "times circle outline" : "times circle"} onClick={this.handleBottomlessClick}/>{this.props.restaurant.bottomless_downvote}</Card.Description>
             } else if (this.props.currentUser) {
                 return <Card.Description>{this.props.restaurant.bottomless_upvote} <Icon id={`bottomlessup-${this.props.restaurant.id}`} inverted color="black" name="check circle outline" onClick={this.handleBottomlessClick} /> Bottomless <Icon id={`bottomlessdown-${this.props.restaurant.id}`} inverted color="black" name="times circle outline" onClick={this.handleBottomlessClick}/>{this.props.restaurant.bottomless_downvote}</Card.Description>
             } else {
@@ -118,7 +118,7 @@ class VoteField extends React.Component {
 
         const addReservations = () => {
             if (userRestaurant && userRestaurant.reservations != null) {
-                return <Card.Description >{this.props.restaurant.reservations_upvote} <Icon id={`reservationsup-${this.props.restaurant.id}`} inverted color={userRestaurant.reservations ? "blue" : "black"} name={userRestaurant.reservations ? "check circle" : "check circle outline"} onClick={this.handleReservationsClick}/> Reservations <Icon id={`reservationsdown-${this.props.restaurant.id}`} inverted color={userRestaurant.reservations ? "black" : "red"} name={userRestaurant.reservations ? "times circle outline" : "times circle"} onClick={this.handleReservationsClick}/>{this.props.restaurant.reservations_downvote}</Card.Description>
+                return <Card.Description >{this.props.restaurant.reservations_upvote} <Icon id={`reservationsup-${this.props.restaurant.id}`} inverted color={userRestaurant.reservations ? "green" : "black"} name={userRestaurant.reservations ? "check circle" : "check circle outline"} onClick={this.handleReservationsClick}/> Reservations <Icon id={`reservationsdown-${this.props.restaurant.id}`} inverted color={userRestaurant.reservations ? "black" : "red"} name={userRestaurant.reservations ? "times circle outline" : "times circle"} onClick={this.handleReservationsClick}/>{this.props.restaurant.reservations_downvote}</Card.Description>
             } else if (this.props.currentUser) {
                 return <Card.Description>{this.props.restaurant.reservations_upvote} <Icon id={`reservationsup-${this.props.restaurant.id}`} inverted color="black" name="check circle outline" onClick={this.handleReservationsClick} /> Reservations<Icon id={`reservationsdown-${this.props.restaurant.id}`} inverted color="black" name="times circle outline" onClick={this.handleReservationsClick}/>{this.props.restaurant.reservations_downvote}</Card.Description>
             } else {
@@ -128,7 +128,7 @@ class VoteField extends React.Component {
 
         const addDrinkSpecials = () => {
             if (userRestaurant && userRestaurant.drink_specials != null) {
-                return <Card.Description >{this.props.restaurant.drink_specials_upvote} <Icon id={`drinkspecialsup-${this.props.restaurant.id}`} inverted color={userRestaurant.drink_specials ? "blue" : "black"} name={userRestaurant.drink_specials ? "check circle" : "check circle outline"} onClick={this.handleDrinkSpecialsClick}/> Drink Specials <Icon id={`drinkspecialsdown-${this.props.restaurant.id}`} inverted color={userRestaurant.drink_specials ? "black" : "red"} name={userRestaurant.drink_specials ? "times circle outline" : "times circle"} onClick={this.handleDrinkSpecialsClick}/>{this.props.restaurant.drink_specials_downvote}</Card.Description>
+                return <Card.Description >{this.props.restaurant.drink_specials_upvote} <Icon id={`drinkspecialsup-${this.props.restaurant.id}`} inverted color={userRestaurant.drink_specials ? "green" : "black"} name={userRestaurant.drink_specials ? "check circle" : "check circle outline"} onClick={this.handleDrinkSpecialsClick}/> Drink Specials <Icon id={`drinkspecialsdown-${this.props.restaurant.id}`} inverted color={userRestaurant.drink_specials ? "black" : "red"} name={userRestaurant.drink_specials ? "times circle outline" : "times circle"} onClick={this.handleDrinkSpecialsClick}/>{this.props.restaurant.drink_specials_downvote}</Card.Description>
             } else if (this.props.currentUser) {
                 return <Card.Description>{this.props.restaurant.drink_specials_upvote} <Icon id={`drinkspecialsup-${this.props.restaurant.id}`} inverted color="black" name="check circle outline" onClick={this.handleDrinkSpecialsClick} /> Drink Specials <Icon id={`drinkspecialsdown-${this.props.restaurant.id}`} inverted color="black" name="times circle outline" onClick={this.handleDrinkSpecialsClick}/>{this.props.restaurant.drink_specials_downvote}</Card.Description>
             } else {
@@ -138,7 +138,7 @@ class VoteField extends React.Component {
 
         const addOutdoorSeating = () => {
             if (userRestaurant && userRestaurant.outdoor_seating != null) {
-                return <Card.Description >{this.props.restaurant.outdoor_seating_upvote} <Icon id={`outdoorseatingup-${this.props.restaurant.id}`} inverted color={userRestaurant.outdoor_seating ? "blue" : "black"} name={userRestaurant.outdoor_seating ? "check circle" : "check circle outline"} onClick={this.handleOutdoorSeatingClick}/> Outdoor Seating <Icon id={`outdoorseatingdown-${this.props.restaurant.id}`} inverted color={userRestaurant.outdoor_seating ? "black" : "red"} name={userRestaurant.outdoor_seating ? "times circle outline" : "times circle"} onClick={this.handleOutdoorSeatingClick}/>{this.props.restaurant.outdoor_seating_downvote}</Card.Description>
+                return <Card.Description >{this.props.restaurant.outdoor_seating_upvote} <Icon id={`outdoorseatingup-${this.props.restaurant.id}`} inverted color={userRestaurant.outdoor_seating ? "green" : "black"} name={userRestaurant.outdoor_seating ? "check circle" : "check circle outline"} onClick={this.handleOutdoorSeatingClick}/> Outdoor Seating <Icon id={`outdoorseatingdown-${this.props.restaurant.id}`} inverted color={userRestaurant.outdoor_seating ? "black" : "red"} name={userRestaurant.outdoor_seating ? "times circle outline" : "times circle"} onClick={this.handleOutdoorSeatingClick}/>{this.props.restaurant.outdoor_seating_downvote}</Card.Description>
             } else if (this.props.currentUser) {
                 return <Card.Description>{this.props.restaurant.outdoor_seating_upvote} <Icon id={`outdoorseatingup-${this.props.restaurant.id}`} inverted color="black" name="check circle outline" onClick={this.handleOutdoorSeatingClick} /> Outdoor Seating <Icon id={`outdoorseatingdown-${this.props.restaurant.id}`} inverted color="black" name="times circle outline" onClick={this.handleOutdoorSeatingClick}/>{this.props.restaurant.outdoor_seating_downvote}</Card.Description>
             } else {
@@ -148,7 +148,7 @@ class VoteField extends React.Component {
 
         const addDragBrunch = () => {
             if (userRestaurant && userRestaurant.drag_brunch != null) {
-                return <Card.Description >{this.props.restaurant.drag_upvote} <Icon id={`dragup-${this.props.restaurant.id}`} inverted color={userRestaurant.drag_brunch ? "blue" : "black"} name={userRestaurant.drag_brunch ? "check circle" : "check circle outline"} onClick={this.handleDragBrunchClick}/> Drag Brunch <Icon id={`outdoorseatingdown-${this.props.restaurant.id}`} inverted color={userRestaurant.drag_brunch ? "black" : "red"} name={userRestaurant.drag_brunch ? "times circle outline" : "times circle"} onClick={this.handleDragBrunchClick}/>{this.props.restaurant.drag_downvote}</Card.Description>
+                return <Card.Description >{this.props.restaurant.drag_upvote} <Icon id={`dragup-${this.props.restaurant.id}`} inverted color={userRestaurant.drag_brunch ? "green" : "black"} name={userRestaurant.drag_brunch ? "check circle" : "check circle outline"} onClick={this.handleDragBrunchClick}/> Drag Brunch <Icon id={`outdoorseatingdown-${this.props.restaurant.id}`} inverted color={userRestaurant.drag_brunch ? "black" : "red"} name={userRestaurant.drag_brunch ? "times circle outline" : "times circle"} onClick={this.handleDragBrunchClick}/>{this.props.restaurant.drag_downvote}</Card.Description>
             } else if (this.props.currentUser) {
                 return <Card.Description>{this.props.restaurant.drag_upvote} <Icon id={`dragup-${this.props.restaurant.id}`} inverted color="black" name="check circle outline" onClick={this.handleDragBrunchClick} /> Drag Brunch <Icon id={`dragdown-${this.props.restaurant.id}`} inverted color="black" name="times circle outline" onClick={this.handleDragBrunchClick}/>{this.props.restaurant.drag_downvote}</Card.Description>
             } else {

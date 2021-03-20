@@ -30,6 +30,7 @@ export const fetchRestaurants = (location) => (dispatch) => {
     })
     .then(r => r.json())
     .then(data => {
+        if (data.my_restaurants) {
         my_data = data.my_restaurants.map(res => ({...res, favorite: "true"}))
         let search_data = data.restaurants.map(res => ({...res, search: "true" }))
         allRestaurants = search_data.concat(my_data)
@@ -43,7 +44,12 @@ export const fetchRestaurants = (location) => (dispatch) => {
         let finalRestaurants = allRestaurants.concat(finalDuplicates)
         uniqueRestaurants = [...new Map(finalRestaurants.map(item =>
             [item["id"], item])).values()]
-        dispatch(addRestaurants(uniqueRestaurants))
+            dispatch(addRestaurants(uniqueRestaurants))
+        } else {
+            let search = data.map(res => ({...res, search: "true" }))
+            dispatch(addRestaurants(search))
+        }
+        
         // dispatch(addMyRestaurants(my_data))
     })
 }
