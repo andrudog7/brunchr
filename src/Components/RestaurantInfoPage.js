@@ -44,6 +44,7 @@ class RestaurantInfoPage extends React.Component {
         return(
             <>
             {UserHeader(this.props.currentUser)}
+            <br></br>
             <NavBar></NavBar>
             <br></br>
             <Grid style={{justifyContent:"center"}}>

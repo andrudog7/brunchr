@@ -4,6 +4,7 @@ const addRestaurant = (restaurant) => ({type: "ADD_TO_PROFILE", restaurant})
 const removeRestaurant = (restaurant_id) => ({type: "REMOVE_FROM_PROFILE", restaurant_id})
 const updateRestaurant = (data) => ({type: "UPDATE_RESTAURANT", data})
 const getUserStats = (stats) => ({type: "GET_USER_STATS", stats})
+const addInitialRestaurants = (restaurants) => ({type: "ADD_INITIAL_RESTAURANTS", restaurants})
 
 export const fetchNewUser = (state, redirectToProfile) => {
     return (dispatch) => {
@@ -60,6 +61,8 @@ export const fetchUser = (state, redirectToProfile) => {
             localStorage.setItem("jwt", data.jwt)
             dispatch(loginUser(data.user))
             dispatch(getUserStats(data.user.users_restaurants))
+            let my_data = data.user.my_restaurants.map(res => ({...res, favorite: "true"}))
+            dispatch(addInitialRestaurants(my_data))
             redirectToProfile()
         })
         .catch(error => {
@@ -117,7 +120,6 @@ export const removeFromProfile = (user_restaurant, flip) => {
 }
 
 export const updateStats = (attribute, restaurant_id, user_id) => {
-    debugger
     let obj
     return (dispatch) => {
         if (!!attribute.reservations) {

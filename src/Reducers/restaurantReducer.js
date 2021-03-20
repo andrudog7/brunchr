@@ -3,10 +3,20 @@ export default function restaurantReducer(state = {restaurants: [], loading: fal
     let count
     let index
     let newArray
+    let unique
     switch(action.type){
-        
+        case "ADD_INITIAL_RESTAURANTS":
+            return {restaurants: action.restaurants};
         case "FETCH_RESTAURANTS":
             return {restaurants: action.payload, loading: false};
+        case "ADD_MY_RESTAURANTS":
+            newArray = [...state.restaurants]
+            debugger
+            newArray.concat(action.payload)
+            unique = [...new Set(newArray)]
+            debugger
+            return {...state,
+                restaurants: unique}
         case "FETCHING_RESTAURANTS":
             return {...state, loading: true};
         case "ADD_COMMENT":

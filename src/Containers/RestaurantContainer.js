@@ -38,7 +38,9 @@ class RestaurantContainer extends React.Component {
 
     render() {
         const renderRestaurantFront = () => {
-            if (this.state.bottomless) {
+            
+            let currentRestaurants = this.props.restaurants.filter(res => res.search === "true")
+                if (this.state.bottomless) {
                 return this.props.restaurants.filter(res => res.bottomless_upvote > res.bottomless_downvote).map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
             ))} else if (this.state.drinkSpecials) {
@@ -54,7 +56,7 @@ class RestaurantContainer extends React.Component {
                 return this.props.restaurants.filter(res => res.drag_upvote > res.drag_downvote).map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
             ))} else {
-                return this.props.restaurants.map(res => (
+                return currentRestaurants.map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
             ))}}
 

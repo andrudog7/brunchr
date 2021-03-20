@@ -10,6 +10,9 @@ export default function userReducer(state = [], action){
         case "LOGOUT":
             localStorage.removeItem('jwt')
             return {state: []};
+        // case "ADD_INITIAL_RESTAURANTS":
+        //     debugger
+        //     return {restaurants: action.payload};
         case "ADD_TO_PROFILE":
             newArray = [...state.state.my_restaurants]
             return { 

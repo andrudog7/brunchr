@@ -10,7 +10,7 @@ class ProfileContainer extends React.Component {
     
     render() {
         const renderProfileCards= () => {
-            return this.props.currentUser.my_restaurants.map(res => (
+            return this.props.restaurants.filter(res => res.favorite).map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
                 ))}
         
@@ -29,6 +29,7 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    restaurants: state.restaurants.restaurants,
     currentUser: state.currentUser.state,
     currentStats: state.stats
 })
