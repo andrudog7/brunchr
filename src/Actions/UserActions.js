@@ -90,12 +90,14 @@ export const addRestaurantToProfile = (restaurant, user, redirect) => {
         })
         .then(r => r.json())
         .then(data => {
+            data.favorite = "true"
+            data.search = restaurant.search
             dispatch(addRestaurant(data))
         })
 }
 }
 
-export const removeFromProfile = (user_restaurant, flip) => {
+export const removeFromProfile = (user_restaurant, restaurant, flip) => {
     return (dispatch) => {
     let obj = {
         users_restaurants: {
@@ -113,8 +115,10 @@ export const removeFromProfile = (user_restaurant, flip) => {
         })
         .then(r => r.json())
         .then(data => {
+            data.favorite = "false"
+            data.search = restaurant.search
             dispatch(removeRestaurant(user_restaurant.restaurant_id))
-            flip()
+            // flip()
         })
 }
 }

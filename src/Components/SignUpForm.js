@@ -42,7 +42,7 @@ class SignUpForm extends React.Component {
         return(
             <div>
                 <NavBar></NavBar>
-                <Header size="huge">SignUp Below</Header>
+                <Header size="huge">Sign Up</Header>
                 <Form style={{textAlign:"center"}} onSubmit={this.handleSignUpSubmit}>
                 <Form.Field inline>
                     <label style={{width:"100px"}}>Username</label>

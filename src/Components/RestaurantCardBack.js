@@ -17,7 +17,7 @@ class RestaurantCardBack extends React.Component {
 
     removeFromProfile = (event) => {
         event.preventDefault()
-        this.props.removeFromProfile(this.props.currentUser.users_restaurants.find(res => res.restaurant_id === this.props.restaurant.id), this.props.flipCard)
+        this.props.removeFromProfile(this.props.currentUser.users_restaurants.find(res => res.restaurant_id === this.props.restaurant.id), this.props.restaurant, this.props.flipCard)
     }
 
     redirectToProfile = () => {
@@ -35,9 +35,9 @@ class RestaurantCardBack extends React.Component {
     render() {
         let link=`/restaurants/${this.props.restaurant.id}`
         const profileButton = () => {
-            if (this.props.currentUser && window.location.pathname === "/profile" && this.props.currentUser.my_restaurants.find(res => res.id === this.props.restaurant.id)) {
+            if (this.props.currentUser && window.location.pathname === "/profile" && this.props.restaurant.favorite === "true") {
                 return <Button size="small" onClick={this.removeFromProfile}>Remove</Button> 
-            } else if (this.props.currentUser && this.props.currentUser.my_restaurants.find(res => res.id === this.props.restaurant.id)) {
+            } else if (this.props.currentUser && this.props.restaurant.favorite === "true") {
                 return <Button primary disabled size="small">Favorited</Button> 
             } else if (this.props.currentUser) {
                  return <Button size="small" onClick={this.addToProfile}>Favorite</Button>   
@@ -67,6 +67,7 @@ class RestaurantCardBack extends React.Component {
 }}
 
 const mapStateToProps = (state) => ({
+    restaurants: state.restaurants.restaurants,
     stats: state.stats.state
 })
 

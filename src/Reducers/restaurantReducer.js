@@ -9,25 +9,31 @@ export default function restaurantReducer(state = {restaurants: [], loading: fal
             return {restaurants: action.restaurants};
         case "FETCH_RESTAURANTS":
             return {restaurants: action.payload, loading: false};
+        case "REMOVE_FROM_PROFILE":
+            newArray = [...state.restaurants]
+            index = state.restaurants.findIndex(res => res.id === action.restaurant_id)
+            newArray[index].favorite = "false"
+            return { 
+                ...state, 
+                    restaurants: newArray
+            };
+        case "ADD_TO_PROFILE":
+            newArray = [...state.restaurants]
+            index = state.restaurants.findIndex(res => res.id === action.restaurant.id)
+            newArray[index].favorite = "true"
+            return { 
+                ...state, 
+                    restaurants: newArray
+                } 
         case "ADD_MY_RESTAURANTS":
             newArray = [...state.restaurants]
-            debugger
             newArray.concat(action.payload)
             unique = [...new Set(newArray)]
-            debugger
             return {...state,
                 restaurants: unique}
         case "FETCHING_RESTAURANTS":
             return {...state, loading: true};
-        case "ADD_COMMENT":
-            restaurant = state.restaurants.find(res => res.id === action.restaurant.id)
-                index = state.restaurants.indexOf(restaurant); //finding index of the item
-                newArray = [...state.restaurants];
-                newArray.splice(index, 1, action.restaurant)
-                return { //copying the orignal state
-                    ...state,
-                    restaurants: newArray //reassingning todos to new array
-                }
+        
         case "ADD_BOTTOMLESS_UPVOTE":
             restaurant = state.restaurants.find(res => res.id === action.restaurant)
             count = restaurant.bottomless_upvote

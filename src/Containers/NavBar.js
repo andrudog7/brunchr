@@ -82,7 +82,7 @@ class NavBar extends React.Component {
                 <Menu.Item
                     style={{textAlign:"left"}}
                     name='signup'
-                    content="Sign-Up"
+                    content="Sign Up"
                     active={this.props.navBar === 'signup'}
                     onClick={this.handleItemClick}
                 />

@@ -10,7 +10,7 @@ class ProfileContainer extends React.Component {
     
     render() {
         const renderProfileCards= () => {
-            return this.props.restaurants.filter(res => res.favorite).map(res => (
+            return this.props.restaurants.filter(res => res.favorite === "true").map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
                 ))}
         

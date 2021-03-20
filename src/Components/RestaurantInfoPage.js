@@ -5,8 +5,12 @@ import {Grid, List, Image, Menu, Header} from 'semantic-ui-react'
 import NavBar from '../Containers/NavBar'
 import CommentForm from './CommentForm'
 import UserHeader from './UserHeader'
+import {fetchComments} from '../Actions/CommentActions'
 
 class RestaurantInfoPage extends React.Component {
+    componentDidMount() {
+        this.props.fetchComments(this.props.restaurantId.id)
+    }
     
     render() {
         const restaurant = this.props.restaurants.find(res => res.id === parseInt(this.props.restaurantId.id))
@@ -18,7 +22,8 @@ class RestaurantInfoPage extends React.Component {
         }
 
         const showComments = () => {
-            return restaurant.comments.map(comment => {
+            if (this.props.comments) {
+            return this.props.comments.map(comment => {
                 return (
                     <Grid>
                     <Grid.Column>
@@ -40,7 +45,7 @@ class RestaurantInfoPage extends React.Component {
                     </Grid>)
                 
             })
-        }
+        }}
         return(
             <>
             {UserHeader(this.props.currentUser)}
@@ -66,11 +71,6 @@ class RestaurantInfoPage extends React.Component {
                         </List.Content>
                     </List.Item>
                     <List.Item>
-                        <List.Icon name='chrome'></List.Icon>
-                        <List.Content as={Link} to={restaurant.url} style={{textAlign:"left"}}>Yelp Page
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
                         <List.Icon name='phone'></List.Icon>
                         <List.Content style={{textAlign:"left"}}>{restaurant.phone}
                         </List.Content>
@@ -83,13 +83,15 @@ class RestaurantInfoPage extends React.Component {
                     </List.Item>
                     <List.Item>
                         <List.Icon name='yelp' />
-                        <List.Content style={{textAlign:"left"}}>Yelp Rating: {restaurant.rating}<br></br>Price: {restaurant.price}
+                        <List.Content style={{textAlign:"left"}}>Yelp Rating: {restaurant.rating}<br></br>Price: {restaurant.price}<br></br>
+                        <List.Content as={Link} to={restaurant.url} style={{textAlign:"left"}}>Yelp Page
+                        </List.Content>
                         </List.Content>
                     </List.Item>
                     <List.Item >
                         <List.Icon name='food' />
                         <List.Content style={{textAlign:"left"}}>
-                            <List.Header>Brunchr Ratings</List.Header>
+                            <List.Header>Brunchr Highlights</List.Header>
                             <List.Description>Bottomless: {restaurant.bottomless_upvote > restaurant.bottomless_downvote ? "yes" : "no"}</List.Description>
                             <List.Description>Drink Specials: {restaurant.drink_specials_upvote > restaurant.drink_specials_downvote ? "yes" : "no"}</List.Description>
                             <List.Description>Takes Reservations: {restaurant.reservations_upvote > restaurant.reservations_downvote ? "yes" : "no"}</List.Description>
@@ -116,7 +118,12 @@ class RestaurantInfoPage extends React.Component {
 
 const mapStateToProps = (state) => ({
     restaurants: state.restaurants.restaurants,
-    currentUser: state.currentUser.state
+    currentUser: state.currentUser.state,
+    comments: state.comments.state
 })
 
-export default connect(mapStateToProps)(RestaurantInfoPage)
+const mapDispatchToProps = (dispatch) => ({
+    fetchComments: (restaurant_id) => dispatch(fetchComments(restaurant_id)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantInfoPage)
