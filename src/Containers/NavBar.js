@@ -15,7 +15,7 @@ class NavBar extends React.Component {
     }
 
     render () {
-        if (this.props.navBar === "profile" || this.props.navBar === "restaurants") {
+        if (this.props.navBar === "My Favorites" || this.props.navBar === "restaurants") {
             return (
                 <Menu pointing secondary style={{marginTop:"-25px"}}>
                 
@@ -23,7 +23,7 @@ class NavBar extends React.Component {
                 <Menu.Item
                     style={{textAlign:"left"}}
                     name='My Favorites'
-                    active={this.props.navBar  === 'profile'}
+                    active={this.props.navBar  === 'My Favorites'}
                     onClick={this.handleItemClick}
                 />
                 </NavLink>
