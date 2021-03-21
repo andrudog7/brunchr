@@ -1,15 +1,12 @@
 import React from 'react' 
-import { Button, Form } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {fetchRestaurants, fetchingRestaurants} from '../Actions/RestaurantActions'
+import SubmitButton from './SubmitButton'
 
 class SearchField extends React.Component {
     state = {
-        query: "",
-        bottomless: false,
-        drinkSpecials: false,
-        reservations: false,
-        outdoorSeating: false
+        query: ""
     }
 
     handleChange = (event) => {
@@ -18,24 +15,6 @@ class SearchField extends React.Component {
         })
     }
 
-    handleCheckbox = (event) => {
-        if (event.target.textContent === "Bottomless") {
-        this.setState((prevState) => ({
-            bottomless: !prevState.bottomless
-        }))
-    } else if (event.target.textContent === "Drink Specials") {
-        this.setState((prevState) => ({
-            drinkSpecials: !prevState.drinkSpecials
-        })) 
-    } else if (event.target.textContent === "Takes Reservations") {
-        this.setState((prevState) => ({
-            reservations: !prevState.reservations
-    })) } else if (event.target.textContent === "Outdoor Seating") {
-        this.setState((prevState) => ({
-            outdoorSeating: !prevState.outdoorSeating
-        }))
-    }
-}
     handleSearchSubmit = (event) => {
         event.preventDefault()
         this.props.fetchingRestaurants()
@@ -44,19 +23,13 @@ class SearchField extends React.Component {
     
     render() {
         return (
-            <div>
+            <div id="form">
                 <Form style={{textAlign:"center"}} onSubmit={this.handleSearchSubmit}>
                 <Form.Field inline>
-                    <label style={{width:"30px"}}>City:</label>
-                    <input style={{width:"250px"}} type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
+                    <input style={{width:"250px"}} type="text" name="query" value={this.state.query} onChange={this.handleChange} placeholder="Search by city/neighborhood"></input>
+                    {SubmitButton()}
+                    <></>
                 </Form.Field>  
-                <Form.Group inline style={{justifyContent:"center"}}>
-                    <Form.Checkbox label="Bottomless" name="bottomless" value={this.state.bottomless} onChange={this.handleCheckbox}></Form.Checkbox>
-                    <Form.Checkbox label="Drink Specials" name="drink_specials"value={this.state.drinkSpecials} onChange={this.handleCheckbox}></Form.Checkbox>
-                    <Form.Checkbox label="Takes Reservations" name="reservations"value={this.state.reservations} onChange={this.handleCheckbox}></Form.Checkbox>
-                    <Form.Checkbox label="Outdoor Seating" name="outdoor_seating"value={this.state.outdoorSeating} onChange={this.handleCheckbox}></Form.Checkbox>
-                    <Button type='submit'>Submit</Button>
-                </Form.Group> 
                 </Form>
             </div>
         )

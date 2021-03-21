@@ -15,14 +15,15 @@ class NavBar extends React.Component {
     }
 
     render () {
-        if (this.props.navBar === "profile" || this.props.navBar === "restaurants") {
-            return (<Menu pointing secondary style={{marginTop:"-25px"}}>
+        if (this.props.navBar === "My Favorites" || this.props.navBar === "restaurants") {
+            return (
+                <Menu pointing secondary style={{marginTop:"-25px"}}>
                 
                 <NavLink to="/profile">
                 <Menu.Item
                     style={{textAlign:"left"}}
-                    name='profile'
-                    active={this.props.navBar  === 'profile'}
+                    name='My Favorites'
+                    active={this.props.navBar  === 'My Favorites'}
                     onClick={this.handleItemClick}
                 />
                 </NavLink>
@@ -35,15 +36,6 @@ class NavBar extends React.Component {
                     onClick={this.handleItemClick}
                 />
                 </NavLink>
-                
-                <Dropdown item text='Display Options'>
-                    <Dropdown.Menu>
-                        <Dropdown.Header>Text Size</Dropdown.Header>
-                        <Dropdown.Item>Small</Dropdown.Item>
-                        <Dropdown.Item>Medium</Dropdown.Item>
-                        <Dropdown.Item>Large</Dropdown.Item>
-                    </Dropdown.Menu>
-                    </Dropdown>
             
                     <Menu.Menu position="right">
                     <NavLink to="/">    
@@ -81,7 +73,7 @@ class NavBar extends React.Component {
                 <Menu.Item
                     style={{textAlign:"left"}}
                     name='signup'
-                    content="Sign-Up"
+                    content="Sign Up"
                     active={this.props.navBar === 'signup'}
                     onClick={this.handleItemClick}
                 />
