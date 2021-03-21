@@ -1,9 +1,11 @@
 import React from 'react' 
-import { Button, Header, Form } from 'semantic-ui-react'
+import { Header, Form } from 'semantic-ui-react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import NavBar from '../Containers/NavBar'
 import {fetchNewUser} from '../Actions/UserActions'
+import SubmitButton from './SubmitButton'
+
 
 class SignUpForm extends React.Component {
     state = {
@@ -64,7 +66,9 @@ class SignUpForm extends React.Component {
                     <label style={{width:"100px"}}>Profile Picture</label>
                     <input style={{width:"250px"}} type="text" placeholder='Image URL' name="avatar" onChange={this.handleChange} value={this.state.avatar} />
                 </Form.Field>
-                <Button type='submit'>Submit</Button>
+                {SubmitButton()}
+                <></>
+                {/* <Button type='submit'>Submit</Button> */}
                 </Form>
             </div>
         )

@@ -36,15 +36,6 @@ class NavBar extends React.Component {
                     onClick={this.handleItemClick}
                 />
                 </NavLink>
-                
-                <Dropdown item text='Display Options'>
-                    <Dropdown.Menu>
-                        <Dropdown.Header>Text Size</Dropdown.Header>
-                        <Dropdown.Item>Small</Dropdown.Item>
-                        <Dropdown.Item>Medium</Dropdown.Item>
-                        <Dropdown.Item>Large</Dropdown.Item>
-                    </Dropdown.Menu>
-                    </Dropdown>
             
                     <Menu.Menu position="right">
                     <NavLink to="/">    

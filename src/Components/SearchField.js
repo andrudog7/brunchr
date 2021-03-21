@@ -1,7 +1,8 @@
 import React from 'react' 
-import { Button, Form } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {fetchRestaurants, fetchingRestaurants} from '../Actions/RestaurantActions'
+import SubmitButton from './SubmitButton'
 
 class SearchField extends React.Component {
     state = {
@@ -22,11 +23,12 @@ class SearchField extends React.Component {
     
     render() {
         return (
-            <div>
+            <div id="form">
                 <Form style={{textAlign:"center"}} onSubmit={this.handleSearchSubmit}>
                 <Form.Field inline>
                     <input style={{width:"250px"}} type="text" name="query" value={this.state.query} onChange={this.handleChange} placeholder="Search by city/neighborhood"></input>
-                    <Button type="submit" inline>Submit</Button>
+                    {SubmitButton()}
+                    <></>
                 </Form.Field>  
                 </Form>
             </div>

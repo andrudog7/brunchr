@@ -85,7 +85,7 @@ class RestaurantInfoPage extends React.Component {
                     <List.Item>
                         <List.Icon name='yelp' />
                         <List.Content style={{textAlign:"left"}}>Yelp Rating: {restaurant.rating}<br></br>Price: {restaurant.price}<br></br>
-                        <List.Content as={Link} to={restaurant.url} style={{textAlign:"left"}}>Yelp Page
+                        <List.Content as='a' href={restaurant.url} src={restaurant.url} style={{textAlign:"left"}}>Yelp Page
                         </List.Content>
                         </List.Content>
                     </List.Item>
@@ -93,11 +93,11 @@ class RestaurantInfoPage extends React.Component {
                         <List.Icon name='food' />
                         <List.Content style={{textAlign:"left"}}>
                             <List.Header>Brunchr Highlights</List.Header>
-                            <List.Description>Bottomless: {restaurant.bottomless_upvote > restaurant.bottomless_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
-                            <List.Description>Drink Specials: {restaurant.drink_specials_upvote > restaurant.drink_specials_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
-                            <List.Description>Takes Reservations: {restaurant.reservations_upvote > restaurant.reservations_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
-                            <List.Description>Outdoor Seating: {restaurant.outdoor_seating_upvote > restaurant.outdoor_seating_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
-                            <List.Description>Drag Show: {restaurant.drag_brunch_upvote > restaurant.drag_brunch_downvote ? <Icon name="check circle" color="green"></Icon> : <Icon name="times circle" color="red"></Icon>}</List.Description>
+                            <List.Description>{restaurant.bottomless_upvote > restaurant.bottomless_downvote ? <div>Bottomless: <Icon name="check circle" color="green"></Icon> {restaurant.bottomless_upvote} votes</div> : <div>Bottomless: <Icon name="times circle" color="red"></Icon>{restaurant.bottomless_downvote} votes</div>}</List.Description>
+                            <List.Description>{restaurant.drink_specials_upvote > restaurant.drink_specials_downvote ? <div>Drink Specials: <Icon name="check circle" color="green"></Icon>{restaurant.drink_specials_upvote} votes</div> : <div>Drink Specials: <Icon name="times circle" color="red"></Icon>{restaurant.drink_specials_downvote} votes</div>}</List.Description>
+                            <List.Description>{restaurant.reservations_upvote > restaurant.reservations_downvote ? <div>Takes Reservations: <Icon name="check circle" color="green"></Icon>{restaurant.reservations_upvote} votes</div> : <div>Takes Reservations: <Icon name="times circle" color="red"></Icon>{restaurant.reservations_downvote} votes</div>}</List.Description>
+                            <List.Description>{restaurant.outdoor_seating_upvote > restaurant.outdoor_seating_downvote ? <div>Outdoor Seating: <Icon name="check circle" color="green"></Icon>{restaurant.outdoor_seating_upvote} votes</div> : <div>Outdoor Seating: <Icon name="times circle" color="red"></Icon>{restaurant.outdoor_seating_downvote} votes</div>}</List.Description>
+                            <List.Description>{restaurant.drag_upvote > restaurant.drag_downvote ? <div>Drag Brunch: <Icon name="check circle" color="green"></Icon>{restaurant.drag_upvote} votes</div> : <div>Drag Brunch: <Icon name="times circle" color="red"></Icon>{restaurant.drag_downvote} votes</div>}</List.Description>
                         </List.Content>
                     </List.Item>
                 </List>   

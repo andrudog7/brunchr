@@ -1,9 +1,10 @@
 import React from 'react' 
 import NavBar from '../Containers/NavBar'
-import { Button, Header, Form } from 'semantic-ui-react'
+import { Header, Form } from 'semantic-ui-react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchUser} from '../Actions/UserActions'
+import SubmitButton from './SubmitButton'
 
 
 class LoginForm extends React.Component {
@@ -48,7 +49,9 @@ class LoginForm extends React.Component {
                     <label style={{width:"100px"}}>Password</label>
                     <input type="password" style={{width:"250px"}} placeholder='Password' name="password" onChange={this.handleChange} value={this.state.password} />
                 </Form.Field>
-                <Button type='submit'>Submit</Button>
+                {SubmitButton()}
+                <></>
+                {/* <Button type='submit'>Submit</Button> */}
                 </Form>
             </div>
         )
