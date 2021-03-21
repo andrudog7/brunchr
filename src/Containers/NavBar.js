@@ -22,7 +22,7 @@ class NavBar extends React.Component {
                 <NavLink to="/profile">
                 <Menu.Item
                     style={{textAlign:"left"}}
-                    name='profile'
+                    name='My Favorites'
                     active={this.props.navBar  === 'profile'}
                     onClick={this.handleItemClick}
                 />
