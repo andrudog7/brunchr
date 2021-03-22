@@ -12,7 +12,7 @@ class RestaurantCardBack extends React.Component {
     }
     addToProfile = (event) => {
         event.preventDefault()
-        this.props.addRestaurantToProfile(this.props.restaurant, this.props.currentUser, this.redirectToProfile)
+        this.props.addRestaurantToProfile(this.props.restaurant, this.props.currentUser)
     }
 
     removeFromProfile = (event) => {
@@ -21,12 +21,12 @@ class RestaurantCardBack extends React.Component {
         this.props.removeFromProfile(this.props.stats.find(rel => rel.restaurant_id === this.props.restaurant.id), this.props.restaurant)
     }
 
-    redirectToProfile = () => {
-        this.props.updateNavbar("profile")
-            this.setState({
-                redirect: true
-            })
-    }
+    // redirectToProfile = () => {
+    //     this.props.updateNavbar("profile")
+    //         this.setState({
+    //             redirect: true
+    //         })
+    // }
 
     handleDoneSubmit = (event) => {
         event.preventDefault()
@@ -42,7 +42,7 @@ class RestaurantCardBack extends React.Component {
                 return <Button primary disabled size="small">Favorited</Button> 
             } else if (this.props.currentUser) {
                  return <Button size="small" onClick={this.addToProfile}>Favorite</Button>   
-                }
+            }
         }
         if (this.state.redirect) {
             return <Redirect to="/profile"></Redirect>
@@ -75,7 +75,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     addToProfile: (restaurant) => dispatch({type: "ADD_TO_PROFILE", restaurant}),
-    addRestaurantToProfile: (restaurant, user, redirect) => dispatch(addRestaurantToProfile(restaurant, user, redirect)),
+    addRestaurantToProfile: (restaurant, user) => dispatch(addRestaurantToProfile(restaurant, user)),
     updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload}),
     removeFromProfile: (user_restaurant, flip) => dispatch(removeFromProfile(user_restaurant, flip)),
     updateStats: (bottomless, restaurant_id, user_id) => dispatch(updateStats(bottomless, restaurant_id, user_id)) 

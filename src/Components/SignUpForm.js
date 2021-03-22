@@ -35,13 +35,11 @@ class SignUpForm extends React.Component {
         this.props.fetchNewUser(this.state, this.redirectToProfile)
     }
 
-    
-
     render() {
         if (this.state.redirect) {
             return <Redirect to="/profile"></Redirect>
         } else {
-        return(
+            return(
             <div>
                 <NavBar></NavBar>
                 <Header size="huge">Sign Up</Header>
@@ -68,7 +66,6 @@ class SignUpForm extends React.Component {
                 </Form.Field>
                 {SubmitButton()}
                 <></>
-                {/* <Button type='submit'>Submit</Button> */}
                 </Form>
             </div>
         )

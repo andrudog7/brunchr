@@ -5,8 +5,6 @@ import RestaurantShowCard from '../Components/RestaurantShowCard'
 import {Card, Form} from 'semantic-ui-react'
 import UserHeader from '../Components/UserHeader'
 
-
-
 class ProfileContainer extends React.Component {
 
     state = {

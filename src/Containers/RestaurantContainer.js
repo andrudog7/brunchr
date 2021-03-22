@@ -78,22 +78,22 @@ class RestaurantContainer extends React.Component {
                 </div>
             )
         } else {
-        return(
-            <div>
-                {UserHeader(this.props.currentUser)}
-                <br></br>
-                <NavBar></NavBar>
-                <SearchField></SearchField>
-                <br></br>
-                {showFilter()}
-                <br></br>
+            return(
                 <div>
-                <Card.Group doubling itemsPerRow={4} stackable>
-                    {renderRestaurantFront()}
-                </Card.Group>
+                    {UserHeader(this.props.currentUser)}
+                    <br></br>
+                    <NavBar></NavBar>
+                    <SearchField></SearchField>
+                    <br></br>
+                    {showFilter()}
+                    <br></br>
+                    <div>
+                        <Card.Group doubling itemsPerRow={4} stackable>
+                            {renderRestaurantFront()}
+                        </Card.Group>
+                    </div>
                 </div>
-            </div>
-        )
+            )
         }
     }
 }

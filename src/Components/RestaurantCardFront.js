@@ -14,6 +14,6 @@ export default class RestaurantCardFront extends React.Component {
                 </>
             </Card.Content>
         </Card>
-    )
+        )
     }
 }

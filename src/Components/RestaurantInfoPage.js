@@ -1,11 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {Grid, List, Image, Menu, Header, Icon} from 'semantic-ui-react'
+import {Grid, List, Image, Icon} from 'semantic-ui-react'
 import NavBar from '../Containers/NavBar'
-import CommentForm from './CommentForm'
 import UserHeader from './UserHeader'
 import {fetchComments} from '../Actions/CommentActions'
+import CommentContainer from './CommentContainer'
 
 class RestaurantInfoPage extends React.Component {
     componentDidMount() {
@@ -21,32 +20,6 @@ class RestaurantInfoPage extends React.Component {
             })
         }
 
-        const showComments = () => {
-            if (!!this.props.comments) {
-            return this.props.comments.map(comment => {
-                return (
-                    <Grid>
-                    <Grid.Column>
-                        <Menu fluid vertical>
-                        <Menu.Item>
-                            <List>
-                            <List.Item>
-                                <List.Header style={{textAlign:"center"}}>{comment.text}</List.Header>
-                                <List.Content style={{textAlign:"left"}}>
-                                    <Image size="tiny" src={comment.user_image}></Image>
-                                    <List.Header as='a'>{comment.username}</List.Header>
-                                <List.Description as='a'>{comment.created_at} </List.Description><br></br>
-                                <List.Header style={{textAlign:"center"}}></List.Header>
-                                </List.Content>
-                            </List.Item>
-                            </List>
-                        </Menu.Item>
-                        </Menu>
-                    </Grid.Column>
-                    </Grid>)
-                
-            })
-        }}
         return(
             <>
             {UserHeader(this.props.currentUser)}
@@ -103,13 +76,7 @@ class RestaurantInfoPage extends React.Component {
                 </List>   
             </Grid.Column>  
             <Grid.Column width={7}>
-                <List>  
-                 <Header as='h3'>Comments</Header>
-                    <List.Item>
-                        {!!this.props.currentUser ? <CommentForm userId={this.props.currentUser.id} restaurantId={restaurant.id}></CommentForm> : null}
-                    </List.Item>
-                    {showComments()}
-                </List>    
+                <CommentContainer comments={this.props.comments} currentUser={this.props.currentUser} restaurant={restaurant}></CommentContainer>
             </Grid.Column>
           </Grid>
           </>
