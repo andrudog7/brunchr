@@ -13,7 +13,7 @@ export default class AboutBrunchr extends React.Component  {
                 <br></br>
                 <div>
                     <p>
-                    Brunchr is a crowd-sourcing app built for brunch lovers! If you're like us, then you know the joy of a bottomless mimosa brunch special or munching on pancakes during a drag show. 
+                    Test Brunchr is a crowd-sourcing app built for brunch lovers! If you're like us, then you know the joy of a bottomless mimosa brunch special or munching on pancakes during a drag show. 
                     Finding them is the hard part. This is where you and Brunchr come in.   
                     </p>
                     <p>
