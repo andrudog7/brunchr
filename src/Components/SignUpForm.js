@@ -62,7 +62,7 @@ class SignUpForm extends React.Component {
                 </Form.Field>
                 <Form.Field inline>
                     <label style={{width:"100px"}}>Profile Picture</label>
-                    <input style={{width:"250px"}} type="text" placeholder='Image URL' name="avatar" onChange={this.handleChange} value={this.state.avatar} />
+                    <input style={{width:"250px"}} type="text" placeholder='Add an image URL for your profile' name="avatar" onChange={this.handleChange} value={this.state.avatar} />
                 </Form.Field>
                 {SubmitButton()}
                 <></>
