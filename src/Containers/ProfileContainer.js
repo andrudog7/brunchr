@@ -1,7 +1,7 @@
 import React from 'react' 
 import {connect} from 'react-redux'
 import NavBar from './NavBar'
-import RestaurantShowCard from '../Components/RestaurantShowCard'
+import RestaurantShowCard from '../Components/Restaurant/RestaurantShowCard'
 import {Card, Form} from 'semantic-ui-react'
 import UserHeader from '../Components/UserHeader'
 

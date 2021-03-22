@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Card} from 'semantic-ui-react'
 import SearchField from '../Components/SearchField'
 import Filter from '../Components/Filter'
-import RestaurantShowCard from '../Components/RestaurantShowCard'
+import RestaurantShowCard from '../Components/Restaurant/RestaurantShowCard'
 import NavBar from './NavBar'
 import UserHeader from '../Components/UserHeader'
 

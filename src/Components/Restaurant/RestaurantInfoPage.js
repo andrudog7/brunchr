@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Grid, List, Image, Icon} from 'semantic-ui-react'
-import NavBar from '../Containers/NavBar'
-import UserHeader from './UserHeader'
-import {fetchComments} from '../Actions/CommentActions'
-import CommentContainer from './CommentContainer'
+import NavBar from '../../Containers/NavBar'
+import UserHeader from '../UserHeader'
+import {fetchComments} from '../../Actions/CommentActions'
+import CommentContainer from '../../Containers/CommentContainer'
 
 class RestaurantInfoPage extends React.Component {
     componentDidMount() {

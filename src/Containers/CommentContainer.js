@@ -1,7 +1,7 @@
 import React from 'react'
 import {List, Header} from 'semantic-ui-react'
-import CommentDisplay from './CommentDisplay'
-import CommentForm from './CommentForm'
+import CommentDisplay from '../Components/CommentDisplay'
+import CommentForm from '../Components/CommentForm'
 
 export default class CommentContainer extends React.Component {
     render() {
