@@ -24,7 +24,7 @@ class SignUpForm extends React.Component {
     }
 
     redirectToProfile = () => {
-        this.props.updateNavbar("profile")
+        this.props.updateNavbar("My Favorites")
             this.setState({
                 redirect: true
             })
