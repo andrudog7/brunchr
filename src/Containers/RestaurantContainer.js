@@ -6,6 +6,7 @@ import Filter from '../Components/Filter'
 import RestaurantShowCard from '../Components/Restaurant/RestaurantShowCard'
 import NavBar from './NavBar'
 import UserHeader from '../Components/UserHeader'
+import AboutBrunchr from '../Components/AboutBrunchr'
 
 class RestaurantContainer extends React.Component {
 
@@ -79,11 +80,13 @@ class RestaurantContainer extends React.Component {
             )
         } else {
             return(
+                
                 <div>
                     {UserHeader(this.props.currentUser)}
                     <br></br>
                     <NavBar></NavBar>
                     <SearchField></SearchField>
+                    {this.props.restaurants.length === 0 ? <AboutBrunchr></AboutBrunchr> : null   }
                     <br></br>
                     {showFilter()}
                     <br></br>
