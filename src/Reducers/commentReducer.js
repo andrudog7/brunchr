@@ -1,7 +1,6 @@
 export default function commentReducer(state = [], action){
     let newArray
     let combined
-    let relationship
     switch(action.type){
         case "ADD_COMMENT":
             newArray = [...state.state]

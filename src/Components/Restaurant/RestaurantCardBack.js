@@ -2,8 +2,8 @@ import React from 'react'
 import {NavLink, Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {Card, Button} from 'semantic-ui-react'
-import { addRestaurantToProfile, removeFromProfile, updateStats } from '../Actions/UserActions'
-import VoteField from './VoteField'
+import { addRestaurantToProfile, removeFromProfile, updateStats } from '../../Actions/UserActions'
+import VoteFieldContainer from '../../Containers/VoteFieldContainer'
 
 
 class RestaurantCardBack extends React.Component {
@@ -12,20 +12,13 @@ class RestaurantCardBack extends React.Component {
     }
     addToProfile = (event) => {
         event.preventDefault()
-        this.props.addRestaurantToProfile(this.props.restaurant, this.props.currentUser, this.redirectToProfile)
+        this.props.addRestaurantToProfile(this.props.restaurant, this.props.currentUser)
     }
 
     removeFromProfile = (event) => {
         event.preventDefault()
         this.props.flipCard()
         this.props.removeFromProfile(this.props.stats.find(rel => rel.restaurant_id === this.props.restaurant.id), this.props.restaurant)
-    }
-
-    redirectToProfile = () => {
-        this.props.updateNavbar("profile")
-            this.setState({
-                redirect: true
-            })
     }
 
     handleDoneSubmit = (event) => {
@@ -42,7 +35,7 @@ class RestaurantCardBack extends React.Component {
                 return <Button primary disabled size="small">Favorited</Button> 
             } else if (this.props.currentUser) {
                  return <Button size="small" onClick={this.addToProfile}>Favorite</Button>   
-                }
+            }
         }
         if (this.state.redirect) {
             return <Redirect to="/profile"></Redirect>
@@ -58,7 +51,7 @@ class RestaurantCardBack extends React.Component {
                 <Card.Description>{this.props.restaurant.city}, {this.props.restaurant.state} {this.props.restaurant.zip_code}</Card.Description>
                 <br></br>
                 <Card.Header>Brunchr Highlights</Card.Header>
-                <VoteField restaurant={this.props.restaurant}></VoteField>
+                <VoteFieldContainer restaurant={this.props.restaurant}></VoteFieldContainer>
                 <br></br>
                 {profileButton()}<NavLink to={link}><Button size="small">Info</Button></NavLink><Button size="small" onClick={this.handleDoneSubmit}>Done</Button>
                 </>
@@ -75,7 +68,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     addToProfile: (restaurant) => dispatch({type: "ADD_TO_PROFILE", restaurant}),
-    addRestaurantToProfile: (restaurant, user, redirect) => dispatch(addRestaurantToProfile(restaurant, user, redirect)),
+    addRestaurantToProfile: (restaurant, user) => dispatch(addRestaurantToProfile(restaurant, user)),
     updateNavbar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload}),
     removeFromProfile: (user_restaurant, flip) => dispatch(removeFromProfile(user_restaurant, flip)),
     updateStats: (bottomless, restaurant_id, user_id) => dispatch(updateStats(bottomless, restaurant_id, user_id)) 

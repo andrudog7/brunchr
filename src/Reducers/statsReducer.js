@@ -13,11 +13,11 @@ export default function statsReducer(state = [], action){
         case "UPDATE_RESTAURANT":
             if (state.state.find(rel => rel.id === action.data.id)) {
                 relationship = state.state.find(rel => rel.id === action.data.id)
-                index = state.state.indexOf(relationship); //finding index of the item
+                index = state.state.indexOf(relationship); 
                 newArray = [...state.state];
                 newArray.splice(index, 1, action.data)
-                return { //copying the orignal state
-                    state: newArray //reassingning todos to new array
+                return { 
+                    state: newArray 
                 }
             } else {
                 newArray = [...state.state]

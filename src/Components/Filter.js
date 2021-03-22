@@ -2,19 +2,6 @@ import React from 'react'
 import { Form } from 'semantic-ui-react'
 
 export default class Filter extends React.Component {
-    // state = {
-    //     bottomless: false,
-    //     drinkSpecials: false,
-    //     reservations: false,
-    //     outdoorSeating: false,
-    //     dragBrunch: false
-    // }
-
-    // handleChange = (event) => {
-    //     this.setState({
-    //         [event.target.name]: event.target.value
-    //     })
-    // }
     
     render() {
         return (

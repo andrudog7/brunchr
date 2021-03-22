@@ -1,6 +1,6 @@
 const addRestaurants = (restaurants) => ({type: "FETCH_RESTAURANTS", payload: restaurants})
 const fetchingtheRestaurants = () => ({type: "FETCHING_RESTAURANTS"})
-const addMyRestaurants = (restaurants) => ({type: "ADD_MY_RESTAURANTS", payload: restaurants})
+// const addMyRestaurants = (restaurants) => ({type: "ADD_MY_RESTAURANTS", payload: restaurants})
 
 
 export const fetchingRestaurants = () => {
@@ -31,20 +31,21 @@ export const fetchRestaurants = (location) => (dispatch) => {
     .then(r => r.json())
     .then(data => {
         if (data.my_restaurants) {
-        my_data = data.my_restaurants.map(res => ({...res, favorite: "true"}))
-        let search_data = data.restaurants.map(res => ({...res, search: "true" }))
-        allRestaurants = search_data.concat(my_data)
-        let overlapIndexes = allRestaurants.map(res => res.id).filter((value, index, self) => self.indexOf(value) != index)
-        let duplicates = []
-        for (let i = 0; i<overlapIndexes.length; i++) {
-            if (my_data.find(r => r.id === overlapIndexes[i])) {
-            duplicates.push(my_data.find(r => r.id === overlapIndexes[i]))
-            }}
-        let finalDuplicates = duplicates.map(res => ({...res, search: "true"}))
-        let finalRestaurants = allRestaurants.concat(finalDuplicates)
-        uniqueRestaurants = [...new Map(finalRestaurants.map(item =>
-            [item["id"], item])).values()]
-            dispatch(addRestaurants(uniqueRestaurants))
+            my_data = data.my_restaurants.map(res => ({...res, favorite: "true"}))
+            let search_data = data.restaurants.map(res => ({...res, search: "true" }))
+            allRestaurants = search_data.concat(my_data)
+            let overlapIndexes = allRestaurants.map(res => res.id).filter((value, index, self) => self.indexOf(value) != index)
+            let duplicates = []
+            for (let i = 0; i<overlapIndexes.length; i++) {
+                if (my_data.find(r => r.id === overlapIndexes[i])) {
+                    duplicates.push(my_data.find(r => r.id === overlapIndexes[i]))
+                }
+            }
+            let finalDuplicates = duplicates.map(res => ({...res, search: "true"}))
+            let finalRestaurants = allRestaurants.concat(finalDuplicates)
+            uniqueRestaurants = [...new Map(finalRestaurants.map(item =>
+                [item["id"], item])).values()]
+                dispatch(addRestaurants(uniqueRestaurants))
         } else {
             let search = data.map(res => ({...res, search: "true" }))
             dispatch(addRestaurants(search))

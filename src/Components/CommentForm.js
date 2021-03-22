@@ -27,10 +27,8 @@ class CommentForm extends React.Component {
         return(
             <div style={{textAlign:"center"}}>
                 <Form style={{textAlign:"center"}} onSubmit={this.handleCommentSubmit}>
-                
                 <Form.Field inline>
                     <textarea rows="3" columns="4" style={{width:"250px"}}placeholder='Add New Comment' name="comment" onChange={this.handleChange} value={this.state.comment} />
-                    
                 </Form.Field>
                 <Button size='mini' type='submit'>Submit</Button>
                 </Form>

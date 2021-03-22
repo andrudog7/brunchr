@@ -72,7 +72,7 @@ export const fetchUser = (state, redirectToProfile) => {
 }
 }
 
-export const addRestaurantToProfile = (restaurant, user, redirect) => {
+export const addRestaurantToProfile = (restaurant, user) => {
     return (dispatch) => {
     let obj = {
         users_restaurants: {

@@ -6,5 +6,5 @@ export default function SubmitButton() {
 
     return (
             <Button type="submit" inline>Submit</Button>
-    );
+    )
 }
