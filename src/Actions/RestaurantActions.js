@@ -19,7 +19,7 @@ export const fetchRestaurants = (location) => (dispatch) => {
     let allRestaurants
     let uniqueRestaurants
     
-    return fetch('http://127.0.0.1:3000/restaurants', {
+    return fetch('https://brunchr-backend.herokuapp.com/restaurants', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

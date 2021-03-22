@@ -2,7 +2,7 @@ const addNewComment = (comment) => ({type: "ADD_COMMENT", comment})
 const fetchingComments = (comments) => ({type: "FETCH_COMMENTS", comments})
 
 export const fetchComments = (restaurant_id) => (dispatch) => {
-    fetch(`http://127.0.0.1:3000/restaurants/${restaurant_id}/comments`, {
+    fetch(`https://brunchr-backend.herokuapp.com/restaurants/${restaurant_id}/comments`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export const addComment = (comment, restaurantId, userId) => (dispatch) => {
         }
     }
     
-    return fetch('http://127.0.0.1:3000/comments', {
+    return fetch('https://brunchr-backend.herokuapp.com/comments', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
