@@ -15,7 +15,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        
         <Header as='h2' style={{marginTop:"10px"}} >
           <Image circular src={brunchr} className="App-logo" alt="logo" />Brunchr
         </Header> 
@@ -29,7 +29,7 @@ class App extends React.Component {
             <Route exact path="/restaurants/:id" component={GetId}></Route>
           </Switch>
         </Container>
-        </Router>
+       
       </div>
     );
   }
