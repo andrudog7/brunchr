@@ -11,7 +11,7 @@ export default function statsReducer(state = [], action){
             combined = [action.data]
             return { state: combined.concat(newArray)} 
         case "UPDATE_RESTAURANT":
-            if (state.state.find(rel => rel.id === action.data.id)) {
+            if (state.state && state.state.find(rel => rel.id === action.data.id)) {
                 relationship = state.state.find(rel => rel.id === action.data.id)
                 index = state.state.indexOf(relationship); 
                 newArray = [...state.state];
@@ -19,12 +19,15 @@ export default function statsReducer(state = [], action){
                 return { 
                     state: newArray 
                 }
-            } else {
+            } else if (state.state) {
                 newArray = [...state.state]
                 newArray.push(action.data)
                 return {...state, 
                     state: newArray
                 }
+            } else {
+                newArray = [action.data]
+                return {state: newArray}
             }
         default:
             return state
