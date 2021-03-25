@@ -7,6 +7,8 @@ export default function restaurantReducer(state = {restaurants: [], loading: fal
     switch(action.type){
         case "ADD_INITIAL_RESTAURANTS":
             return {restaurants: action.restaurants};
+        case "REMOVE_RESTAURANTS":
+            return {restaurants: [], loading: false}
         case "FETCH_RESTAURANTS":
             return {restaurants: action.payload, loading: false};
         case "REMOVE_FROM_PROFILE":

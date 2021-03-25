@@ -6,10 +6,17 @@ export default function statsReducer(state = [], action){
     switch(action.type){
         case "GET_USER_STATS":
             return {state: action.stats};
+        case 'REMOVE_STATS':
+            return {state: []}
         case "ADD_STAT":
-            newArray = [...state.state]
-            combined = [action.data]
-            return { state: combined.concat(newArray)} 
+            if (state.state) {
+                newArray = [...state.state]
+                combined = [action.data]
+                return { state: combined.concat(newArray)} 
+            } else {
+                newArray = [action.data]
+                return {state: newArray}
+            }
         case "UPDATE_RESTAURANT":
             if (state.state && state.state.find(rel => rel.id === action.data.id)) {
                 relationship = state.state.find(rel => rel.id === action.data.id)
