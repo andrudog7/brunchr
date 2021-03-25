@@ -5,7 +5,6 @@ import SignUpForm from '../Components/SignUpForm'
 import LoginForm from "../Components/LoginForm"
 import ProfileContainer from './ProfileContainer'
 import Home from './Home'
-import {BrowserRouter as Router} from 'react-router-dom'
 import {Header, Image, Container} from 'semantic-ui-react'
 import brunchr from '../Images/brunchrlogo.jpeg'
 import RestaurantContainer from './RestaurantContainer';
