@@ -11,56 +11,28 @@ import AboutBrunchr from '../Components/AboutBrunchr'
 class RestaurantContainer extends React.Component {
 
     state = {
-        bottomless: false,
-        drinkSpecials: false,
-        reservations: false,
-        outdoorSeating: false,
-        dragBrunch: false
+        query: ""
     }
 
     handleCheckBox = (event) => {
-        if (event.target.textContent === "Bottomless") {
-            this.setState((prevState) => ({
-                bottomless: !prevState.bottomless
-            }))
-        } else if (event.target.textContent === "Drink Specials") {
-            this.setState((prevState) => ({
-                drinkSpecials: !prevState.drinkSpecials
-            })) 
-        } else if (event.target.textContent === "Takes Reservations") {
-            this.setState((prevState) => ({
-                reservations: !prevState.reservations
-        })) } else if (event.target.textContent === "Outdoor Seating") {
-            this.setState((prevState) => ({
-                outdoorSeating: !prevState.outdoorSeating
-            }))
-        } else if (event.target.textContent === "Drag Brunch") {
-            this.setState((prevState) => ({
-                dragBrunch: !prevState.dragBrunch
-            }))
+        if (this.state.query === "") {
+        this.setState({
+            query: event.target.id
+        })
+        } else {
+            this.setState({
+                query: ""
+            })
         }
     }
 
     render() {
         const renderRestaurantFront = () => {
-            
             let currentRestaurants = this.props.restaurants.filter(res => res.search === "true")
-                if (this.state.bottomless) {
-                return currentRestaurants.filter(res => res.bottomless_upvote > res.bottomless_downvote).map(res => (
-                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-            ))} else if (this.state.drinkSpecials) {
-                return currentRestaurants.filter(res => res.drink_specials_upvote > res.drink_specials_downvote).map(res => (
-                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-            ))} else if (this.state.reservations) {
-                return currentRestaurants.filter(res => res.reservations_upvote > res.reservations_downvote).map(res => (
-                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-            ))} else if (this.state.outdoorSeating) {
-                return currentRestaurants.filter(res => res.outdoor_seating_upvote > res.outdoor_seating_downvote).map(res => (
-                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-            ))} else if (this.state.dragBrunch) {
-                return currentRestaurants.filter(res => res.drag_upvote > res.drag_downvote).map(res => (
-                    <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
-            ))} else {
+            if (this.state.query !== "") {
+            return currentRestaurants.filter(res => res[`${this.state.query}_upvote`] > res[`${this.state.query}_downvote`]).map(res => (
+                <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
+        ))} else {
                 return currentRestaurants.map(res => (
                     <RestaurantShowCard restaurant={res} currentUser={this.props.currentUser}></RestaurantShowCard>
             ))}}
