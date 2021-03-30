@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom'
 import './index.css';
 import App from './Containers/App';
 import reportWebVitals from './reportWebVitals';
@@ -10,14 +11,20 @@ import 'semantic-ui-css/semantic.min.css'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
+// const port = process.env.PORT || 3000
 
+// app.listen(port, function () {
+//   console.log("Server started successfully")
+// })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

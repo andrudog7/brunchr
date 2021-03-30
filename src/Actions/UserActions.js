@@ -19,7 +19,7 @@ export const fetchNewUser = (state, redirectToProfile) => {
         }
     }
 
-    fetch('http://127.0.0.1:3000/users', {
+    fetch('https://brunchr-backend.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export const fetchUser = (state, redirectToProfile) => {
             password: state.password
         }
     }
-    fetch('http://127.0.0.1:3000/login', {
+    fetch('https://brunchr-backend.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export const addRestaurantToProfile = (restaurant, user) => {
             user_id: user.id
         }
     }
-    fetch('http://127.0.0.1:3000/users_restaurants', {
+    fetch('https://brunchr-backend.herokuapp.com/users_restaurants', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export const removeFromProfile = (user_restaurant, restaurant) => {
             my_profile: "false"
         }
     }
-    fetch(`http://127.0.0.1:3000/users_restaurants/${user_restaurant.id}`, {
+    fetch(`https://brunchr-backend.herokuapp.com/users_restaurants/${user_restaurant.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ export const updateStats = (attribute, restaurant_id, user_id) => {
                     user_id: user_id,
                     drag_brunch: attribute.drag_brunch
         }}}
-    fetch(`http://127.0.0.1:3000/users_restaurants`, {
+    fetch(`https://brunchr-backend.herokuapp.com/users_restaurants`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
