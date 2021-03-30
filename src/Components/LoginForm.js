@@ -38,6 +38,7 @@ class LoginForm extends React.Component {
         } else {
         return(
             <div>
+                <br></br>
                 <NavBar></NavBar>
                 <Header size="huge">Login</Header>
                 <Form style={{textAlign:"center"}} onSubmit={this.handleLoginSubmit}>
