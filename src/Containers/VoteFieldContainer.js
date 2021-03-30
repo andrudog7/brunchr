@@ -11,7 +11,7 @@ class VoteFieldContainer extends React.Component {
 
     render() {
         let userRestaurant
-        if (this.props.currentUser) {
+        if (this.props.userRestaurants && this.props.userRestaurants.find(rel => rel.restaurant_id === this.props.restaurant.id)) {
         userRestaurant = this.props.userRestaurants.find(rel => rel.restaurant_id === this.props.restaurant.id)
         }
 

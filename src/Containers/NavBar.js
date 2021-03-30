@@ -8,6 +8,8 @@ class NavBar extends React.Component {
     handleItemClick = (e, { name }) => {
         if (name === "logout") {
             this.props.logoutUser()
+            this.props.removeRestaurants()
+            this.props.removeStats()
             this.props.handleNavBar("home")
         } else {
         this.props.handleNavBar(name)
@@ -91,7 +93,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     handleNavBar: (payload) => dispatch({type: "HANDLE_NAVBAR", payload}),
-    logoutUser: (payload) => dispatch({type: 'LOGOUT', payload})
+    logoutUser: (payload) => dispatch({type: 'LOGOUT', payload}),
+    removeRestaurants: (payload) => dispatch({type: 'REMOVE_RESTAURANTS', payload}),
+    removeStats: (payload) => dispatch({type: 'REMOVE_STATS', payload})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
