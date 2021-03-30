@@ -5,7 +5,6 @@ import SignUpForm from '../Components/SignUpForm'
 import LoginForm from "../Components/LoginForm"
 import ProfileContainer from './ProfileContainer'
 import Home from './Home'
-import {BrowserRouter as Router} from 'react-router-dom'
 import {Header, Image, Container} from 'semantic-ui-react'
 import brunchr from '../Images/brunchrlogo.jpeg'
 import RestaurantContainer from './RestaurantContainer';
@@ -15,7 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        
         <Header as='h2' style={{marginTop:"10px"}} >
           <Image circular src={brunchr} className="App-logo" alt="logo" />Brunchr
         </Header> 
@@ -29,7 +28,7 @@ class App extends React.Component {
             <Route exact path="/restaurants/:id" component={GetId}></Route>
           </Switch>
         </Container>
-        </Router>
+       
       </div>
     );
   }
