@@ -20,10 +20,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start --no-cache",
+    "start": "serve -s build",
+    "heroku-postbuild": "webpack -p",
     "build": "react-scripts build",
     "test": "react-scripts test --no-cache",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "react-scripts start --no-cache"
   },
   "eslintConfig": {
     "extends": [
