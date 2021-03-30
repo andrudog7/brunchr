@@ -41,6 +41,7 @@ class SignUpForm extends React.Component {
         } else {
             return(
             <div>
+                <br></br>
                 <NavBar></NavBar>
                 <Header size="huge">Sign Up</Header>
                 <Form style={{textAlign:"center"}} onSubmit={this.handleSignUpSubmit}>
