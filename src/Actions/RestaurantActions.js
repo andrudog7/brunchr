@@ -50,7 +50,5 @@ export const fetchRestaurants = (location) => (dispatch) => {
             let search = data.map(res => ({...res, search: "true" }))
             dispatch(addRestaurants(search))
         }
-        
-        // dispatch(addMyRestaurants(my_data))
     })
 }
