@@ -6,7 +6,7 @@ Demo Video: https://www.youtube.com/channel/UCJhdSkEmq1maua5o_clxF6A
 
 ACCESS:
 
-The backend for this game is available at (github link: https://github.com/andrudog7/react_backend). 
+The backend for this application is available at (github link: https://github.com/andrudog7/react_backend). 
 
 SUPPORT: Contact Andrew at waverider826@yahoo.com for support.
 
@@ -14,7 +14,7 @@ Authors and Acknowledgement: Author - Andrew Smoker, Styling - Andrew Franco
 
 Contributing This project is intended to be a welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/andrudog7/brunch_madness. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/andrudog7/brunchr. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct.
 
 License The gem is available as open source under the terms of the MIT License.
 
